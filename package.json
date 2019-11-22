@@ -1,8 +1,8 @@
 {
   "name": "@glueit/forms",
   "version": "0.0.2",
-  "description": "",
-  "main": "index.js",
+  "description": "Glue It - Dead Simple, but powerful forms",
+  "module": "index.js",
   "scripts": {
     "start": "back start",
     "start:prod": "NODE_ENV=production back start",
@@ -10,25 +10,13 @@
     "lint-prettier": "eslint . --fix && pretty-quick --staged",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Jeff Decker",
   "license": "MIT",
   "dependencies": {
-    "@babel/plugin-transform-react-jsx-source": "^7.5.0",
-    "@babel/standalone": "^7.5.5",
-    "@glueit/back": "0.0.20",
-    "@glueit/material-theme": "0.0.4"
-  },
-  "devDependencies": {
-    "@glueit/eslint-config": "0.0.1",
-    "@glueit/prettier-config": "0.0.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-mocha": "^6.2.1",
-    "eslint-plugin-react": "^7.16.0",
-    "husky": "^3.0.9",
-    "i": "^0.3.6",
-    "pm": "^2.2.6",
-    "prettier": "^1.17.1",
-    "pretty-quick": "^1.11.1"
+    "@glueit/back": "0.0.21",
+    "@glueit/material-theme": "0.0.4",
+    "@glueit/eslint-config": "0.0.3",
+    "@glueit/prettier-config": "0.0.2"
   },
   "eslintConfig": {
     "extends": "@glueit/eslint-config"

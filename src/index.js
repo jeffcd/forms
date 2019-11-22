@@ -11,7 +11,7 @@ if (!formSaved) {
 }
 
 const setFieldList = (body, name, value) => {
-  const [listName, _, fieldName, index] = name.split('-')
+  const [listName, , fieldName, index] = name.split('-')
   if (!body[listName]) {
     body[listName] = []
   }

@@ -58,11 +58,12 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Home = ({ execAction }) => {
+const Home = () => {
   const classes = useStyles()
   const handleSubmit = async (e, body) => {
     e.preventDefault()
     console.log(body)
+    // eslint-disable-next-line no-undef
     alert('Submission handler called.')
   }
   return (
