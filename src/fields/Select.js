@@ -38,6 +38,7 @@ const Select = ({
     <FormControl variant="outlined" fullWidth className={classes.formControl}>
       <InputLabel ref={inputLabel} htmlFor={`outlined-${name}-native`}>
         {label}
+        {required ? ' *' : ''}
       </InputLabel>
       <MSelect
         native

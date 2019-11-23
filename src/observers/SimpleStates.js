@@ -11,7 +11,7 @@ const stateStrs = {
 }
 
 const useStyles = makeStyles(theme => ({
-  text: {
+  SimpleStates: {
     marginTop: '16px',
     paddingLeft: theme.spacing(1)
   }
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 const SimpleStates = ({ form }) => {
   const classes = useStyles()
   return (
-    <Typography variant="body1" className={classes.text}>
+    <Typography variant="body1" className={classes.SimpleStates}>
       {stateStrs[form.state]}
     </Typography>
   )
