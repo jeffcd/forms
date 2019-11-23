@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Button from './Button'
+import Button from '../observers/Button'
 
 const List = ({ children, name, addLabel, maxSize }) => {
   const [size, setSize] = useState(0)

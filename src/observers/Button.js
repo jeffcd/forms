@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { default as MButton } from '@material-ui/core/Button'
+import withFormStateHoc from '../withFormStateHoc'
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -8,8 +9,9 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Button = ({ text, type, onClick }) => {
+const Button = ({ text, type, onClick, form }) => {
   const classes = useStyles()
+  const disabled = form.state === 'submit'
 
   return (
     <MButton
@@ -17,6 +19,7 @@ const Button = ({ text, type, onClick }) => {
       size="large"
       variant="contained"
       color="primary"
+      disabled={disabled}
       className={classes.button}
       onClick={onClick}
     >
@@ -25,4 +28,4 @@ const Button = ({ text, type, onClick }) => {
   )
 }
 
-export default Button
+export default withFormStateHoc(Button)

@@ -1,4 +1,5 @@
-export { default as Button } from './src/fields/Button'
+export { default as SimpleStates } from './src/observers/SimpleStates'
+export { default as Button } from './src/observers/Button'
 export { default as Select } from './src/fields/Select'
 export { default as Tags } from './src/fields/Tags'
 export { default as Input } from './src/fields/Input'

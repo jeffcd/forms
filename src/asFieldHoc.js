@@ -26,36 +26,50 @@ const errorMessages = {
 
 const getErrorMessages = errors => errors.map(error => errorMessages[error])
 
-export default Field => {
-  return ({ ...rest }) => {
+const asFieldHoc = Field => {
+  return function asFieldHoc({ ...rest }) {
     const form = useContext(FormContext)
-    const [state, setState] = React.useState({
-      name: rest.name,
-      value: rest.initialValue || '',
-      validators: getValidators(rest),
-      convertTo: rest.convertTo,
-      errors: []
-    })
+    const { name, initialValue, convertTo } = rest
     const handleChange = e => {
-      const newState = {
-        ...state,
+      const field = form.fields[name]
+      const newField = {
+        ...field,
         value: e.target.value
       }
-      const errors = validateField(newState)
-      newState.errors = errors
-      setState(newState)
-      form.setFormField(newState)
+      const errors = validateField(newField)
+      newField.errors = errors
+      form.setFormField(newField)
     }
     useEffect(() => {
-      form.setFormField(state)
+      const field = {
+        name,
+        value: initialValue || '',
+        validators: getValidators(rest),
+        convertTo,
+        errors: []
+      }
+      const isUser = false
+      form.setFormField(field, isUser)
     }, [rest.name])
     return (
-      <Field
-        onChange={handleChange}
-        value={state.value}
-        errors={getErrorMessages(state.errors)}
-        {...rest}
-      />
+      <FormContext.Consumer>
+        {form => {
+          const field = form.fields[name]
+          if (!field) {
+            return null
+          }
+          return (
+            <Field
+              onChange={handleChange}
+              value={field.value}
+              errors={getErrorMessages(field.errors)}
+              {...rest}
+            />
+          )
+        }}
+      </FormContext.Consumer>
     )
   }
 }
+
+export default asFieldHoc

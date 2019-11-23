@@ -6,7 +6,8 @@ let formSaved = JSON.parse(sessionStorage.getItem('formContext'))
 if (!formSaved) {
   formSaved = {
     fields: {},
-    errorCount: 0
+    errorCount: 0,
+    state: 'pristine'
   }
 }
 
@@ -40,6 +41,17 @@ const convertToData = form => {
   return body
 }
 
+const clear = (setForm, form) => {
+  Object.keys(form.fields).forEach(name => {
+    const field = form.fields[name]
+    field.value = ''
+    field.errors = []
+  })
+  form.state = 'pristine'
+  form.errorCount = 0
+  setForm({ ...form })
+}
+
 const Form = ({
   children,
   onSubmit,
@@ -48,14 +60,21 @@ const Form = ({
 }) => {
   const [form, setForm] = useState(formSaved)
 
-  const updateFormField = updatedField => {
+  const updateFormField = (updatedField, isUser = true) => {
     // window.sessionStorage.setItem('formContext', JSON.stringify(newForm))
     form.fields[updatedField.name] = updatedField
-    setForm(form)
+    if (isUser) {
+      form.state = 'dirty'
+    }
+    setForm({ ...form })
   }
 
   const validateForm = e => {
     e.preventDefault()
+    if (form.submit) {
+      console.warn('validateForm: form is already in submission state')
+      return
+    }
     let errorCount = 0
     Object.keys(form.fields).forEach(field => {
       const errors = validateField(form.fields[field])
@@ -63,9 +82,14 @@ const Form = ({
       errorCount += errors.length
     })
     form.errorCount = errorCount
-    setForm(form)
+    form.state = errorCount ? 'error' : 'submit'
+    setForm({ ...form })
     if (errorCount === 0) {
-      onSubmit(e, convertToData(form))
+      setTimeout(() => {
+        onSubmit(e, convertToData(form), {
+          clear: () => clear(setForm, form)
+        })
+      }, 0)
     }
   }
 
