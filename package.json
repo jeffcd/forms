@@ -1,6 +1,6 @@
 {
   "name": "@glueit/forms",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Glue It - Dead Simple, but powerful forms",
   "module": "index.js",
   "scripts": {
