@@ -12,9 +12,9 @@
   },
   "author": "Jeff Decker",
   "license": "MIT",
-  "dependencies": {
-    "@glueit/back": "0.0.21",
-    "@glueit/material-theme": "0.0.4",
+  "devDependencies": {
+    "@glueit/back": "0.0.25",
+    "@glueit/material-theme": "0.0.5",
     "@glueit/eslint-config": "0.0.3",
     "@glueit/prettier-config": "0.0.2"
   },
