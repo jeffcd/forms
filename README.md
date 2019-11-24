@@ -26,7 +26,7 @@ $ npm i @glueit/forms
 ## Custom Validators & Messages
 
 ```
-import React, { useState } from 'react'
+import React from 'react'
 import Form, {
   Button,
   Input
@@ -45,18 +45,73 @@ const handleSubmit = (e, form, actions) => {
   actions.clear()
 }
 
-<Form messages={messages} validators={{ range20to30 }} onSubmit={(e, form, acitons) => handleSubmit(e, form, actions)}>
-  <Input
-    name="age"
-    label="Age"
-    helperText="What is your age?"
-    required
-    range20to30
-  />
-  <Button text="Submit" type="submit" />
-</Form>
+const function AgeForm = () => (
+  <Form messages={messages} validators={{ range20to30 }} onSubmit={(e, form, acitons) => handleSubmit(e, form, actions)}>
+    <Input
+      name="age"
+      label="Age"
+      helperText="What is your age?"
+      required
+      range20to30
+    />
+    <Button text="Submit" type="submit" />
+  </Form>
+)
+
+export default AgeForm
 ```
 
 ## Custom Fields
 
+Custom fields are created using the `asField` higher order component.
+
+```
+import React from 'react'
+import Form, {
+  Button,
+  asField
+} from '@glueit/forms'
+
+const CustomInput = asField({
+  onChange,
+  onBlur = () => {},
+  name,
+  value,
+  errors,
+  label,
+  helperText,
+  required = false
+}) => {
+  return (
+    <input
+      id={name}
+      value={value}
+      onChange={e => onChange(e)}
+      onBlur={e => onBlur(e)}
+      label={label}
+      required={required}
+    />
+  )
+})
+
+const function AgeForm = () => (
+  <Form onSubmit={(e, form, acitons) => handleSubmit(e, form, actions)}>
+    <CustomInput
+      name="age"
+      label="Age"
+      helperText="What is your age?"
+      required
+      range20to30
+    />
+    <Button text="Submit" type="submit" />
+  </Form>
+)
+
+export default AgeForm
+
+
+```
+
 ## State Management
+
+State is handled using the context hook. You can access the form state from `onSubmit` property on `Form`.
