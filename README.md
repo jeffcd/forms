@@ -26,6 +26,12 @@ $ npm i @glueit/forms
 ## Custom Validators & Messages
 
 ```
+import React, { useState } from 'react'
+import Form, {
+  Button,
+  Input
+} from '@glueit/forms'
+
 const range20to30 = ({ value }) => {
   return value >= 20 && value <= 30
 }
@@ -47,6 +53,7 @@ const handleSubmit = (e, form, actions) => {
     required
     range20to30
   />
+  <Button text="Submit" type="submit" />
 </Form>
 ```
 
