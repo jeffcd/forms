@@ -1,12 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 import FormContext from './FormContext'
-import validateField from './validateField'
-
-const validators = {
-  required: true,
-  maxLength: true,
-  minLength: true
-}
+import validateField, { validatorFunctions } from './validateField'
+import messages from './messages'
+const validators = validatorFunctions
 
 const getValidators = props => {
   const fieldValidators = {}
@@ -18,11 +14,7 @@ const getValidators = props => {
   return fieldValidators
 }
 
-const errorMessages = {
-  required: 'The field is required.',
-  maxLength: 'Exceeded the max length.',
-  minLength: 'The min length is not met.'
-}
+const errorMessages = messages
 
 const getErrorMessages = errors => errors.map(error => errorMessages[error])
 

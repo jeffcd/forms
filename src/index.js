@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import FormContext from './FormContext'
-import validateField from './validateField'
+import validateField, { registerValidators } from './validateField'
+import { registerMessages } from './messages'
 
 let formSaved = JSON.parse(sessionStorage.getItem('formContext'))
 if (!formSaved) {
@@ -56,7 +57,9 @@ const Form = ({
   children,
   onSubmit,
   noValidate = true,
-  autoComplete = 'off'
+  autoComplete = 'off',
+  validators = {},
+  messages = {}
 }) => {
   const [form, setForm] = useState(formSaved)
 
@@ -92,6 +95,11 @@ const Form = ({
       }, 0)
     }
   }
+
+  //useEffect(() => {
+  registerValidators(validators)
+  registerMessages(messages)
+  //}, [ validators ])
 
   return (
     <FormContext.Provider value={{ ...form, setFormField: updateFormField }}>

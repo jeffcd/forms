@@ -4,13 +4,15 @@ import Grid from '@material-ui/core/Grid'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
-import Button from '../../src/fields/Button'
+import Button from '../../src/observers/Button'
 import Select from '../../src/fields/Select'
 import Tags from '../../src/fields/Tags'
 import Input from '../../src/fields/Input'
 import Code from '../../src/fields/Code'
 import List from '../../src/fields/List'
 import Form from '../../src'
+import { range20to30 } from './validators'
+import messages from './messages'
 
 const cardOptions = [
   {
@@ -74,7 +76,11 @@ const Home = () => {
             Sample Form
           </Typography>
         </Grid>
-        <Form onSubmit={(e, form) => handleSubmit(e, form)}>
+        <Form
+          messages={messages}
+          validators={{ range20to30 }}
+          onSubmit={(e, form) => handleSubmit(e, form)}
+        >
           <Grid container item spacing={1} xs={12} sm={8} md={8}>
             <Paper className={classes.card}>
               <Select
@@ -91,6 +97,13 @@ const Home = () => {
                 required
                 maxLength="32"
                 minLength="4"
+              />
+              <Input
+                name="age"
+                label="Age"
+                helperText="What is your age?"
+                required
+                range20to30
               />
               <Tags
                 name="tags"

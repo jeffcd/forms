@@ -1,8 +1,10 @@
 import React from 'react'
 import { LayoutProvider as LP } from '@glueit/material-theme'
 
+const Title = () => <>Glue It - Forms</>
+
 const headerOpts = {
-  title: 'Glue It',
+  Title,
   Links: () => null
 }
 
