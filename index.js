@@ -5,7 +5,7 @@ export { default as Tags } from './src/fields/Tags'
 export { default as Input } from './src/fields/Input'
 export { default as Code } from './src/fields/Code'
 export { default as List } from './src/fields/List'
-export { default as asField } from './source/asFieldHoc'
+export { default as asField } from './src/asFieldHoc'
 
 import Form from './src'
 export default Form
