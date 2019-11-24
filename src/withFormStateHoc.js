@@ -1,5 +1,6 @@
 import React from 'react'
 import FormContext from './FormContext'
+import stateStrs from './formStates'
 
 const withFormStateHoc = Observer => {
   return function withFormStateHoc({ ...rest }) {
@@ -9,7 +10,7 @@ const withFormStateHoc = Observer => {
           if (!form) {
             return null
           }
-          return <Observer form={form} {...rest} />
+          return <Observer form={form} stateStrs={stateStrs} {...rest} />
         }}
       </FormContext.Consumer>
     )

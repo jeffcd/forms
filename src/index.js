@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import FormContext from './FormContext'
 import validateField, { registerValidators } from './validateField'
 import { registerMessages } from './messages'
+import { registerStateStrs } from './formStates'
 
 let formSaved = JSON.parse(sessionStorage.getItem('formContext'))
 if (!formSaved) {
@@ -42,13 +43,30 @@ const convertToData = form => {
   return body
 }
 
-const clear = (setForm, form) => {
+const error = (type, setForm, form) => {
+  form.state = `error_${type}`
+  setForm({ ...form })
+}
+
+const clear = (type = '', setForm, form) => {
   Object.keys(form.fields).forEach(name => {
     const field = form.fields[name]
     field.value = ''
     field.errors = []
   })
-  form.state = 'pristine'
+  const state = type ? `pristine_${type}` : 'pristine'
+  form.state = state
+  form.errorCount = 0
+  setForm({ ...form })
+}
+
+const pristine = (type = '', setForm, form) => {
+  Object.keys(form.fields).forEach(name => {
+    const field = form.fields[name]
+    field.errors = []
+  })
+  const state = type ? `pristine_${type}` : 'pristine'
+  form.state = state
   form.errorCount = 0
   setForm({ ...form })
 }
@@ -59,7 +77,8 @@ const Form = ({
   noValidate = true,
   autoComplete = 'off',
   validators = {},
-  messages = {}
+  messages = {},
+  stateStrs = {}
 }) => {
   const [form, setForm] = useState(formSaved)
 
@@ -73,8 +92,8 @@ const Form = ({
   }
 
   const validateForm = e => {
-    e.preventDefault()
     if (form.submit) {
+      e.preventDefault()
       console.warn('validateForm: form is already in submission state')
       return
     }
@@ -88,18 +107,17 @@ const Form = ({
     form.state = errorCount ? 'error' : 'submit'
     setForm({ ...form })
     if (errorCount === 0) {
-      setTimeout(() => {
-        onSubmit(e, convertToData(form), {
-          clear: () => clear(setForm, form)
-        })
-      }, 0)
+      onSubmit(e, convertToData(form), {
+        error: type => error(type, setForm, form),
+        clear: type => clear(type, setForm, form),
+        pristine: type => pristine(type, setForm, form)
+      })
     }
   }
 
-  //useEffect(() => {
   registerValidators(validators)
   registerMessages(messages)
-  //}, [ validators ])
+  registerStateStrs(stateStrs)
 
   return (
     <FormContext.Provider value={{ ...form, setFormField: updateFormField }}>

@@ -10,9 +10,11 @@ import Tags from '../../src/fields/Tags'
 import Input from '../../src/fields/Input'
 import Code from '../../src/fields/Code'
 import List from '../../src/fields/List'
+import SimpleStates from '../../src/observers/SimpleStates'
 import Form from '../../src'
 import { range20to30 } from './validators'
 import messages from './messages'
+import stateStrs from './stateStrs'
 
 const cardOptions = [
   {
@@ -62,11 +64,20 @@ const useStyles = makeStyles(theme => ({
 
 const Home = () => {
   const classes = useStyles()
-  const handleSubmit = async (e, body) => {
+  const handleSubmit = async (e, body, actions) => {
     e.preventDefault()
     console.log(body)
-    // eslint-disable-next-line no-undef
-    alert('Submission handler called.')
+    console.log(actions)
+    // This is just for example...
+    const result = await new Promise(res => {
+      setTimeout(() => {
+        // actions.pristine('success')
+        //actions.clear('success')
+        actions.error('server')
+        res('done')
+      }, 3000)
+    })
+    console.log(result)
   }
   return (
     <Container>
@@ -78,8 +89,9 @@ const Home = () => {
         </Grid>
         <Form
           messages={messages}
+          stateStrs={stateStrs}
           validators={{ range20to30 }}
-          onSubmit={(e, form) => handleSubmit(e, form)}
+          onSubmit={(e, form, actions) => handleSubmit(e, form, actions)}
         >
           <Grid container item spacing={1} xs={12} sm={8} md={8}>
             <Paper className={classes.card}>
@@ -165,6 +177,7 @@ const Home = () => {
 
             <Grid container item xs={12} spacing={3}>
               <Button text="Submit" type="submit" />
+              <SimpleStates />
             </Grid>
           </Grid>
         </Form>
