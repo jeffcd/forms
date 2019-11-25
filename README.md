@@ -17,7 +17,7 @@ Table of Contents
   * [Form states](#form-states)
   * [Hooks based state management](#state-management)
 
-<a name="prerequisites"/>
+<a name="prerequisites"></a>
 ## Prerequisites
 
 Forms is built on top of React. At the minimum you will need:
@@ -32,7 +32,7 @@ Forms is built on top of React. At the minimum you will need:
 $ npm i @glueit/forms
 ```
 
-<a name="sample-forms" />
+<a name="sample-forms"></a>
 ## Sample Forms
 
 You can see a sample form by cloning this repo and running these commands.
@@ -44,7 +44,7 @@ npm run start
 
 Then open your browser at `localhost:3000`.
 
-<a name="custom-fields" />
+<a name="custom-fields"></a>
 ## Custom Fields
 
 Custom fields are created using the `asField` higher order component.
@@ -98,7 +98,7 @@ const CustomInput = asField({
 </Form>
 ```
 
-<a name="custom-observers" />
+<a name="custom-observers"></a>
 ## Custom Observers
 
 You can have observers in your `Form` that can then render based on the form state.
@@ -132,7 +132,7 @@ const SimpleStates = withFormState(({ form, stateStrs }) => (
 </Form>
 ```
 
-<a name="submit-handling" />
+<a name="submit-handling"></a>
 ## Submit Handling
 
 Create your submit handler function.
@@ -175,7 +175,7 @@ Your submit handler gets three params.
 
 For all three of these `actions` you can specify your own type. For example, maybe you want to have `error_server` as shown above. In this case you would call with `actions.error('server')`.
 
-<a name="validators" />
+<a name="validators"></a>
 ## Built-in validators
 
 Apply any or all of the following to your fields as needed.
@@ -184,7 +184,7 @@ Apply any or all of the following to your fields as needed.
 - maxLength
 - minLength
 
-<a name="custom-validators" />
+<a name="custom-validators"></a>
 ## Custom Validators
 
 Create a function that takes a value:
@@ -209,7 +209,7 @@ Pass that function to your `Form` and apply that validator to a field.
 </Form>
 ```
 
-<a name="custom-messages" />
+<a name="custom-messages"></a>
 ## Custom Messages
 
 Create an object with your messages.
@@ -226,7 +226,7 @@ Pass that object to your `Form`.
 <Form messages={messages}>
 ```
 
-<a name="form-states" />
+<a name="form-states"></a>
 ## Form states
 
 There are three states.
@@ -257,7 +257,7 @@ Pass that object to your `Form`.
 <Form stateStrs={stateStrs}>
 ```
 
-<a name="state-management" />
+<a name="state-management"></a>
 ## State Management
 
 State is handled using the context hook. You can access the form state from `onSubmit` property on `Form` or using `observers` as described above.
