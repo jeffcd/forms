@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import set from 'lodash/set'
 import FormContext from './FormContext'
 import validateField, { registerValidators } from './validateField'
 import { registerMessages } from './messages'
@@ -13,30 +14,25 @@ if (!formSaved) {
   }
 }
 
-const setFieldList = (body, name, value) => {
-  const [listName, , fieldName, index] = name.split('-')
-  if (!body[listName]) {
-    body[listName] = []
-  }
-  if (!body[listName][index]) {
-    body[listName][index] = {}
-  }
-  body[listName][index][fieldName] = value
-}
-
-const isPartOfList = name => /^.*--.*/.test(name)
-
 const convertToData = form => {
   const body = {}
+  const convertArrToDataArr = arr => {
+    const dataArr = []
+    arr.forEach((fields, i) => {
+      dataArr[i] = convertToData({ fields })
+    })
+    return dataArr
+  }
   Object.keys(form.fields).forEach(name => {
     const field = form.fields[name]
-    if (isPartOfList(name)) {
-      setFieldList(body, name, field.value)
+    const value = field.value
+    if (Array.isArray(value)) {
+      body[name] = convertArrToDataArr(value)
     } else {
       if (field.convertTo) {
-        body[name] = field.value[field.convertTo.fn](field.convertTo.sep)
+        body[name] = value[field.convertTo.fn](field.convertTo.sep)
       } else {
-        body[name] = field.value
+        body[name] = value
       }
     }
   })
@@ -83,8 +79,7 @@ const Form = ({
   const [form, setForm] = useState(formSaved)
 
   const updateFormField = (updatedField, isUser = true) => {
-    // window.sessionStorage.setItem('formContext', JSON.stringify(newForm))
-    form.fields[updatedField.name] = updatedField
+    set(form.fields, updatedField.name, updatedField)
     if (isUser) {
       form.state = 'dirty'
     }

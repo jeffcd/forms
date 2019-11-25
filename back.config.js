@@ -7,6 +7,11 @@ export default {
       path: '/',
       exact: true,
       page: 'Home'
+    },
+    {
+      path: '/list',
+      exact: true,
+      page: 'List'
     }
   ],
   transports: {
@@ -15,8 +20,7 @@ export default {
       opts: {
         base: '/api/'
       },
-      endpoints: {
-      }
+      endpoints: {}
     }
   }
 }

@@ -15,6 +15,7 @@ const Input = ({
   return (
     <TextField
       id={`outlined-${name}-basic`}
+      name={name}
       value={value}
       onChange={e => onChange(e)}
       onBlur={e => onBlur(e)}

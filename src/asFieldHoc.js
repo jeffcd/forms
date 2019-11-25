@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react'
+import get from 'lodash/get'
 import FormContext from './FormContext'
 import validateField, { validatorFunctions } from './validateField'
 import messages from './messages'
@@ -18,12 +19,21 @@ const errorMessages = messages
 
 const getErrorMessages = errors => errors.map(error => errorMessages[error])
 
+const getInitialValue = (Field, { minSize = 0 }) => {
+  if (Field.type === 'list') {
+    const size = parseInt(minSize)
+    return Array(size)
+  }
+
+  return ''
+}
+
 const asFieldHoc = Field => {
   return function asFieldHoc({ ...rest }) {
     const form = useContext(FormContext)
     const { name, initialValue, convertTo } = rest
     const handleChange = e => {
-      const field = form.fields[name]
+      const field = get(form.fields, name)
       const newField = {
         ...field,
         value: e.target.value
@@ -35,7 +45,7 @@ const asFieldHoc = Field => {
     useEffect(() => {
       const field = {
         name,
-        value: initialValue || '',
+        value: initialValue || getInitialValue(Field, rest),
         validators: getValidators(rest),
         convertTo,
         errors: []
@@ -46,7 +56,7 @@ const asFieldHoc = Field => {
     return (
       <FormContext.Consumer>
         {form => {
-          const field = form.fields[name]
+          const field = get(form.fields, name)
           if (!field) {
             return null
           }
