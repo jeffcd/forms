@@ -210,7 +210,7 @@ import Form, {
 ### The observer
 
 ```
-const SimpleStates = withFormStateHoc(({ form, stateStrs }) => (
+const SimpleStates = withFormState(({ form, stateStrs }) => (
   <>
     The current state of the form is:
     <span>{stateStrs[form.state]}</span>
