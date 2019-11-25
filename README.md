@@ -3,7 +3,10 @@
 Build React forms declaratively.
 
 - Custom validators
+- Custom messages
 - Custom fields
+- Custom observers
+- Intuitive and simple submit handling
 - Hooks based state management
 
 ## Prerequisites
