@@ -81,6 +81,14 @@ Pass that object to your `Form`.
 <Form messages={messages}>
 ```
 
+## Form states
+
+There are three states.
+
+- pristine: A form that is pristine means that it has no modifications to it's state. It can have data, but there are no \[unsaved\] modifications to that data.
+- error: A form that has errors such as a required field or invalid data. A form can also be in error state if the submission fails on the server side such as a 500 error.
+- dirty: A form that has unsaved changes.
+
 ## Custom States
 
 Create an object with your states. Make sure each state is prefixed with one of the allowed states.
@@ -98,7 +106,7 @@ const stateStrs = {
 Pass that object to your `Form`.
 
 ```
-<Form stateStrs={stateStrs} >
+<Form stateStrs={stateStrs}>
 ```
 
 ## Submit Handling
@@ -141,7 +149,7 @@ Your submit handler gets three params.
 - actions.pristine([type]): This will leave the data in place but will set the form to pristine. Which means that there are no unsaved changes. It is useful if you are allowing ongoing edits with periodic saves.
 - actions.error([type]): When an error occurs.
 
-For all three of these `actions` you can specify your own type. For example, maybe you wany to have `error_server` as shown above. In this case you would call with `actions.error('server')`.
+For all three of these `actions` you can specify your own type. For example, maybe you want to have `error_server` as shown above. In this case you would call with `actions.error('server')`.
 
 ## Custom Fields
 
