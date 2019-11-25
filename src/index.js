@@ -75,7 +75,6 @@ const clear = (type = '', setForm, form) => {
 
 const pristine = (type = '', setForm, form) => {
   traverseForm(form)(field => {
-    field.value = ''
     field.errors = []
   })
   const state = type ? `pristine_${type}` : 'pristine'
@@ -111,7 +110,7 @@ const Form = ({
 
   const removeItemFromList = (from, index) => {
     const field = get(form.fields, from)
-    field.value.splice(index, index)
+    field.value.splice(index, 1)
     updateFormField(field)
   }
 

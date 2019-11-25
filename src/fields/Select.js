@@ -63,7 +63,9 @@ const Select = ({
           )
         })}
       </MSelect>
-      <FormHelperText>{errors.length ? errors[0] : helperText}</FormHelperText>
+      <FormHelperText error={errors.length > 0}>
+        {errors.length ? errors[0] : helperText}
+      </FormHelperText>
     </FormControl>
   )
 }

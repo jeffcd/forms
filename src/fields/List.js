@@ -9,6 +9,9 @@ const List = ({ children, name, value }) => {
       {arr.map((a, i) => (
         <React.Fragment key={i}>
           {childrenArr.map((child, j) => {
+            if (!child.props) {
+              return child
+            }
             const fullName = `${name}.value[${i}].${child.props.name}`
             const to = child.props.to
             const from = child.props.from
