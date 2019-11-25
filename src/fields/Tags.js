@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Chip from '@material-ui/core/Chip'
 import { Input } from './Input'
-import asField from '../asFieldHoc'
+import asField from '../hoc/asField'
 
 const useStyles = makeStyles(theme => ({
   chip: {

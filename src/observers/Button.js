@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { default as MButton } from '@material-ui/core/Button'
-import withFormStateHoc from '../withFormStateHoc'
+import withFormStateHoc from '../hoc/withFormState'
 
 const useStyles = makeStyles(theme => ({
   button: {

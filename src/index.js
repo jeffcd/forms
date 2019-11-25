@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import set from 'lodash/set'
+import get from 'lodash/get'
 import FormContext from './FormContext'
 import validateField, { registerValidators } from './validateField'
 import { registerMessages } from './messages'
@@ -44,9 +45,25 @@ const error = (type, setForm, form) => {
   setForm({ ...form })
 }
 
-const clear = (type = '', setForm, form) => {
+const traverseForm = form => handler => {
+  const traverseArr = arr => {
+    arr.forEach(fields => {
+      traverseForm({ fields })(handler)
+    })
+  }
   Object.keys(form.fields).forEach(name => {
     const field = form.fields[name]
+    const value = field.value
+    if (Array.isArray(value)) {
+      traverseArr(value)
+    } else {
+      handler(field)
+    }
+  })
+}
+
+const clear = (type = '', setForm, form) => {
+  traverseForm(form)(field => {
     field.value = ''
     field.errors = []
   })
@@ -57,8 +74,8 @@ const clear = (type = '', setForm, form) => {
 }
 
 const pristine = (type = '', setForm, form) => {
-  Object.keys(form.fields).forEach(name => {
-    const field = form.fields[name]
+  traverseForm(form)(field => {
+    field.value = ''
     field.errors = []
   })
   const state = type ? `pristine_${type}` : 'pristine'
@@ -86,6 +103,23 @@ const Form = ({
     setForm({ ...form })
   }
 
+  const addItemToList = to => {
+    const field = get(form.fields, to)
+    field.value.push({})
+    updateFormField(field)
+  }
+
+  const removeItemFromList = (from, index) => {
+    const field = get(form.fields, from)
+    field.value.splice(index, index)
+    updateFormField(field)
+  }
+
+  const listActions = {
+    addItemToList,
+    removeItemFromList
+  }
+
   const validateForm = e => {
     if (form.submit) {
       e.preventDefault()
@@ -93,9 +127,9 @@ const Form = ({
       return
     }
     let errorCount = 0
-    Object.keys(form.fields).forEach(field => {
-      const errors = validateField(form.fields[field])
-      form.fields[field].errors = errors
+    traverseForm(form)(field => {
+      const errors = validateField(field)
+      field.errors = errors
       errorCount += errors.length
     })
     form.errorCount = errorCount
@@ -107,6 +141,8 @@ const Form = ({
         clear: type => clear(type, setForm, form),
         pristine: type => pristine(type, setForm, form)
       })
+    } else {
+      e.preventDefault()
     }
   }
 
@@ -115,7 +151,9 @@ const Form = ({
   registerStateStrs(stateStrs)
 
   return (
-    <FormContext.Provider value={{ ...form, setFormField: updateFormField }}>
+    <FormContext.Provider
+      value={{ ...form, setFormField: updateFormField, listActions }}
+    >
       <form
         onSubmit={e => validateForm(e)}
         noValidate={noValidate}

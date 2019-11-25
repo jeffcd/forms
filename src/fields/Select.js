@@ -4,7 +4,7 @@ import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import { default as MSelect } from '@material-ui/core/Select'
-import asField from '../asFieldHoc'
+import asField from '../hoc/asField'
 
 const useStyles = makeStyles(theme => ({
   formControl: {

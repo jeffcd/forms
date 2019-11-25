@@ -1,5 +1,5 @@
 import React from 'react'
-import asFieldHoc from '../asFieldHoc'
+import asField from '../hoc/asField'
 
 const List = ({ children, name, value }) => {
   const arr = Array(value.length).fill(1)
@@ -10,8 +10,21 @@ const List = ({ children, name, value }) => {
         <React.Fragment key={i}>
           {childrenArr.map((child, j) => {
             const fullName = `${name}.value[${i}].${child.props.name}`
+            const to = child.props.to
+            const from = child.props.from
             const id = `${name}:${i}::${child.props.name}:`
-            const Clone = React.cloneElement(child, { name: fullName, id })
+            const listProps = { id }
+            if (child.props.name) {
+              listProps.name = fullName
+            }
+            if (to) {
+              listProps.to = `${name}.value[${i}].${to}`
+            }
+            if (from) {
+              listProps.from = `${name}`
+              listProps.index = i
+            }
+            const Clone = React.cloneElement(child, listProps)
             return <React.Fragment key={j}>{Clone}</React.Fragment>
           })}
         </React.Fragment>
@@ -22,4 +35,4 @@ const List = ({ children, name, value }) => {
 
 List.type = 'list'
 
-export default asFieldHoc(List)
+export default asField(List)

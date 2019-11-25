@@ -1,6 +1,6 @@
 import React from 'react'
-import FormContext from './FormContext'
-import stateStrs from './formStates'
+import FormContext from '../FormContext'
+import stateStrs from '../formStates'
 
 const withFormStateHoc = Observer => {
   return function withFormStateHoc({ ...rest }) {

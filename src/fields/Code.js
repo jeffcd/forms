@@ -3,7 +3,7 @@ import MonacoEditor from 'react-monaco-editor'
 import { makeStyles } from '@material-ui/core/styles'
 import FormControl from '@material-ui/core/FormControl'
 import FormHelperText from '@material-ui/core/FormHelperText'
-import asField from '../asFieldHoc'
+import asField from '../hoc/asField'
 
 const useStyles = makeStyles(theme => ({
   formControl: {

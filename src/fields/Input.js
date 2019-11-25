@@ -1,6 +1,6 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField'
-import asField from '../asFieldHoc'
+import asField from '../hoc/asField'
 
 const Input = ({
   onChange,

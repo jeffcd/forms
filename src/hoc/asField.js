@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 import get from 'lodash/get'
-import FormContext from './FormContext'
-import validateField, { validatorFunctions } from './validateField'
-import messages from './messages'
+import FormContext from '../FormContext'
+import validateField, { validatorFunctions } from '../validateField'
+import messages from '../messages'
 const validators = validatorFunctions
 
 const getValidators = props => {
