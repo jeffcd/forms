@@ -15,6 +15,7 @@ Table of Contents
   * [Custom validators](#custom-validators)
   * [Custom messages](#custom-messages)
   * [Form states](#form-states)
+  * [Lists](#lists)
   * [Hooks based state management](#state-management)
 
 <a name="prerequisites"></a>
@@ -255,6 +256,61 @@ Pass that object to your `Form`.
 
 ```
 <Form stateStrs={stateStrs}>
+```
+
+<a name="lists"></a>
+## Lists
+
+You can create lists that are arbitrarily deep. For example, employment history would be a list.
+
+### Import lists
+
+```
+import { List, withListActions } from '@glueit/forms'
+```
+
+### Add and Remove Components
+
+These can be any component that you want. Just wrap with the `withListActions` HOC.
+
+```
+const AddListItem = withListActions(({ text, to, listActions }) => {
+  return <Link onClick={() => listActions.addItemToList(to)}>{text}</Link>
+})
+
+const RemoveListItem = withListActions(({ text, from, index, listActions }) => {
+  return (
+    <Link onClick={() => listActions.removeItemFromList(from, index)}>
+      {text}
+    </Link>
+  )
+})
+```
+
+### Add the List to your form
+
+Notice that we create a `List` with name of `employers`. The `value` of this field will now be an `array` instead of a `string`. Each element in the `employers` array will be an object containing employer, title, duration, and a sub list of managers.
+
+```
+<Form>
+  <h3>Your Employment History</h3>
+  <List minSize="2" maxSize="5" name="employers">
+    <h5>Employer Entry</h5>
+    <RemoveListItem from text="Remove Employer" />
+    <Input name="employer" label="Employer" required />
+    <Input name="title" label="Your Title" required />
+    <Input name="duration" label="Years / months duration" />
+    <h6>Your Managers</h6>
+    <List name="managers" minSize="1" maxSize="2">
+      <Input name="name" label="Manager" />
+      <RemoveListItem from text="Remove Manager" />
+    </List>
+    <br />
+    <br />
+    <AddListItem to="managers" text="Add Manager" />
+    <hr />
+  </List>
+</Form>
 ```
 
 <a name="state-management"></a>
