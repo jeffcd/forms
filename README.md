@@ -85,9 +85,11 @@ Pass that object to your `Form`.
 
 There are three states.
 
-- pristine: A form that is pristine means that it has no modifications to it's state. It can have data, but there are no \[unsaved\] modifications to that data.
+- pristine: A form that is pristine means that it has no modifications to its state. It can have data, but there are no \[unsaved\] modifications to its data.
 - error: A form that has errors such as a required field or invalid data. A form can also be in error state if the submission fails on the server side such as a 500 error.
 - dirty: A form that has unsaved changes.
+
+You can override the messages for any of these or create custom states.
 
 ## Custom States
 
