@@ -1,8 +1,9 @@
 import React from 'react'
 import List from '../../src/fields/List'
 import SimpleStates from '../../src/observers/SimpleStates'
-import asField from '../../src/asFieldHoc'
-import withFormState from '../../src/withFormStateHoc'
+import asField from '../../src/hoc/asField'
+import withFormState from '../../src/hoc/withFormState'
+import withListActions from '../../src/hoc/withListActions'
 import Form from '../../src'
 
 const Input = asField(
@@ -46,6 +47,26 @@ const Button = withFormState(({ text, type, onClick, form }) => {
   )
 })
 
+const AddListItem = withListActions(({ text, to, listActions }) => {
+  return (
+    <Button
+      text={text}
+      type="button"
+      onClick={() => listActions.addItemToList(to)}
+    />
+  )
+})
+
+const RemoveListItem = withListActions(({ text, from, index, listActions }) => {
+  return (
+    <Button
+      text={text}
+      type="button"
+      onClick={() => listActions.removeItemFromList(from, index)}
+    />
+  )
+})
+
 const PList = () => {
   const handleSubmit = async (e, body, actions) => {
     e.preventDefault()
@@ -70,18 +91,29 @@ const PList = () => {
       <div>
         <Input name="age" label="Your Age" />
       </div>
+
       <h3>Your Employment History</h3>
       <div>
         <List minSize="2" maxSize="5" name="employers">
           <h5>Employer Entry</h5>
-          <Input name="employer" label="Employer" />
-          <Input name="title" label="Your Title" />
+          <RemoveListItem from text="Remove Employer" />
+          <Input name="employer" label="Employer" required />
+          <Input name="title" label="Your Title" required />
           <Input name="duration" label="Years / months duration" />
           <h6>Your Managers</h6>
           <List name="managers" minSize="1" maxSize="2">
             <Input name="name" label="Manager" />
+            <RemoveListItem from text="Remove Manager" />
           </List>
+          <br />
+          <br />
+          <AddListItem to="managers" text="Add Manager" />
+          <hr />
         </List>
+        <div>
+          <br />
+          <AddListItem to="employers" text="Add Employer" />
+        </div>
       </div>
 
       <div>
