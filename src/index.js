@@ -33,7 +33,12 @@ const convertToData = form => {
       body[name] = convertArrToDataArr(value)
     } else {
       if (field.convertTo) {
-        body[name] = value[field.convertTo.fn](field.convertTo.sep)
+        const fn = field.convertTo.fn
+        if (typeof fn === 'function') {
+          body[name] = fn(value)
+        } else {
+          body[name] = value[field.convertTo.fn](field.convertTo.sep)
+        }
       } else {
         body[name] = value
       }
