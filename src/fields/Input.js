@@ -10,7 +10,10 @@ const Input = ({
   errors,
   label,
   helperText,
-  required = false
+  required = false,
+  multiline = false,
+  rows = 1,
+  rowsMax = 4
 }) => {
   return (
     <TextField
@@ -26,6 +29,9 @@ const Input = ({
       required={required}
       error={errors.length > 0}
       helperText={errors.length ? errors[0] : helperText}
+      multiline={multiline}
+      rows={rows}
+      rowsMax={rowsMax}
     />
   )
 }

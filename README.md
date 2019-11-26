@@ -2,23 +2,24 @@
 
 Build React forms declaratively.
 
-Table of Contents
-=================
+# Table of Contents
 
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-  * [Sample forms](#sample-forms)
-  * [Custom fields](#custom-fields)
-  * [Custom observers](#custom-observers)
-  * [Intuitive and simple submit handling](#submit-handling)
-  * [Validators](#validators)
-  * [Custom validators](#custom-validators)
-  * [Custom messages](#custom-messages)
-  * [Form states](#form-states)
-  * [Lists](#lists)
-  * [Hooks based state management](#state-management)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Sample forms](#sample-forms)
+- [Custom fields](#custom-fields)
+- [Custom observers](#custom-observers)
+- [Intuitive and simple submit handling](#submit-handling)
+- [Validators](#validators)
+- [Custom validators](#custom-validators)
+- [Custom messages](#custom-messages)
+- [Form states](#form-states)
+- [Lists](#lists)
+- [Visibility](#visibility)
+- [Hooks based state management](#state-management)
 
 <a name="prerequisites"></a>
+
 ## Prerequisites
 
 Forms is built on top of React. At the minimum you will need:
@@ -27,6 +28,7 @@ Forms is built on top of React. At the minimum you will need:
 - [React 16.8+](http://reactjs.org/)
 
 <a name="installation"></a>
+
 ## Installation
 
 ```
@@ -34,6 +36,7 @@ $ npm i @glueit/forms
 ```
 
 <a name="sample-forms"></a>
+
 ## Sample forms
 
 You can see a sample form by cloning this repo and running these commands.
@@ -46,6 +49,7 @@ npm run start
 Then open your browser at `localhost:3000`.
 
 <a name="custom-fields"></a>
+
 ## Custom fields
 
 Custom fields are created using the `asField` higher order component.
@@ -100,6 +104,7 @@ const CustomInput = asField({
 ```
 
 <a name="custom-observers"></a>
+
 ## Custom observers
 
 You can have observers in your `Form` that can then render based on the form state.
@@ -134,6 +139,7 @@ const SimpleStates = withFormState(({ form, stateStrs }) => (
 ```
 
 <a name="submit-handling"></a>
+
 ## Submit handling
 
 Create your submit handler function.
@@ -177,6 +183,7 @@ Your submit handler gets three params.
 For all three of these `actions` you can specify your own type. For example, maybe you want to have `error_server` as shown above. In this case you would call with `actions.error('server')`.
 
 <a name="validators"></a>
+
 ## Built-in validators
 
 Apply any or all of the following to your fields as needed.
@@ -186,6 +193,7 @@ Apply any or all of the following to your fields as needed.
 - minLength
 
 <a name="custom-validators"></a>
+
 ## Custom validators
 
 Create a function that takes a value:
@@ -211,6 +219,7 @@ Pass that function to your `Form` and apply that validator to a field.
 ```
 
 <a name="custom-messages"></a>
+
 ## Custom messages
 
 Create an object with your messages.
@@ -228,6 +237,7 @@ Pass that object to your `Form`.
 ```
 
 <a name="form-states"></a>
+
 ## Form states
 
 There are three states.
@@ -259,6 +269,7 @@ Pass that object to your `Form`.
 ```
 
 <a name="lists"></a>
+
 ## Lists
 
 You can create lists that are arbitrarily deep. For example, employment history would be a list.
@@ -313,7 +324,28 @@ Notice that we create a `List` with name of `employers`. The `value` of this fie
 </Form>
 ```
 
+<a name="visibility"></a>
+
+## Visibility
+
+You can control visibility of `Fields` by using the `VisibilityGroup` component. Only fields that are visible will carry to the `onSubmit` event of the form.
+
+```
+import Form, {
+  VisibilityGroup
+} from '@glueit/forms'
+```
+
+Then wrap your field(s) as needed. Us the isVisible prop to tell the group if it is visible or not.
+
+```
+<VisibilityGroup isVisible{form => form.component.age > 21}>
+...
+</VisibilityGroup>
+```
+
 <a name="state-management"></a>
+
 ## State management
 
 State is handled using the context hook. You can access the form state from `onSubmit` property on `Form` or using `observers` as described above.

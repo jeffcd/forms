@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import get from 'lodash/get'
 import FormContext from '../FormContext'
+import VisibilityContext from '../VisibilityContext'
 import validateField, { validatorFunctions } from '../validateField'
 import messages from '../messages'
 const validators = validatorFunctions
@@ -53,6 +54,7 @@ const asFieldHoc = Field => {
       const isUser = false
       form.setFormField(field, isUser)
     }, [rest.name])
+
     return (
       <FormContext.Consumer>
         {form => {
@@ -61,12 +63,26 @@ const asFieldHoc = Field => {
             return null
           }
           return (
-            <Field
-              onChange={handleChange}
-              value={field.value}
-              errors={getErrorMessages(field.errors)}
-              {...rest}
-            />
+            <VisibilityContext.Consumer>
+              {visibility => {
+                if (visibility.isVisible === false) {
+                  if (field.isVisible !== false) {
+                    const isUser = false
+                    field.isVisible = false
+                    form.setFormField({ ...field }, isUser)
+                  }
+                  return null
+                }
+                return (
+                  <Field
+                    onChange={handleChange}
+                    value={field.value}
+                    errors={getErrorMessages(field.errors)}
+                    {...rest}
+                  />
+                )
+              }}
+            </VisibilityContext.Consumer>
           )
         }}
       </FormContext.Consumer>

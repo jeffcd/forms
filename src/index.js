@@ -27,7 +27,9 @@ const convertToData = form => {
   Object.keys(form.fields).forEach(name => {
     const field = form.fields[name]
     const value = field.value
-    if (Array.isArray(value)) {
+    if (field.isVisible === false) {
+      // do nothing
+    } else if (Array.isArray(value)) {
       body[name] = convertArrToDataArr(value)
     } else {
       if (field.convertTo) {
@@ -54,7 +56,9 @@ const traverseForm = form => handler => {
   Object.keys(form.fields).forEach(name => {
     const field = form.fields[name]
     const value = field.value
-    if (Array.isArray(value)) {
+    if (field.isVisible === false) {
+      // do nothing
+    } else if (Array.isArray(value)) {
       traverseArr(value)
     } else {
       handler(field)
