@@ -97,12 +97,16 @@ const PList = () => {
         <List minSize="2" maxSize="5" name="employers">
           <h5>Employer Entry</h5>
           <RemoveListItem from text="Remove Employer" />
-          <Input name="employer" label="Employer" required />
-          <Input name="title" label="Your Title" required />
-          <Input name="duration" label="Years / months duration" />
+          <div>
+            <Input name="employer" label="Employer" required />
+            <Input name="title" label="Your Title" required />
+            <Input name="duration" label="Years / months duration" />
+          </div>
           <h6>Your Managers</h6>
           <List name="managers" minSize="1" maxSize="2">
-            <Input name="name" label="Manager" />
+            <div>
+              <Input name="name" label="Manager" />
+            </div>
             <RemoveListItem from text="Remove Manager" />
           </List>
           <br />
