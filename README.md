@@ -339,7 +339,7 @@ import Form, {
 Then wrap your field(s) as needed. Us the isVisible prop to tell the group if it is visible or not.
 
 ```
-<VisibilityGroup isVisible{form => form.component.age > 21}>
+<VisibilityGroup isVisible{form => form.fields.age && form.fields.age.value > 21}>
 ...
 </VisibilityGroup>
 ```
