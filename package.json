@@ -1,6 +1,6 @@
 {
   "name": "@glueit/forms",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Glue It - Dead Simple, but powerful forms",
   "main": "dist-index.js",
   "umd:main": "forms.umd.production.min.js",
