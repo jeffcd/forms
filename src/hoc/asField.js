@@ -58,7 +58,7 @@ const asFieldHoc = Field => {
       }
       const isUser = false
       form.setFormField(field, isUser)
-    }, [fullName])
+    }, [form.setField])
 
     return (
       <FormContext.Consumer>
