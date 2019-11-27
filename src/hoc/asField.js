@@ -32,64 +32,67 @@ const getInitialValue = (Field, { minSize = 0 }) => {
 
 const asFieldHoc = Field => {
   return function asFieldHoc({ ...rest }) {
-    const form = useContext(FormContext)
-    const listInfo = useContext(ListContext)
-    const { name, initialValue, convertTo } = rest
-    const fullName = listInfo
-      ? `${listInfo.name}.value[${listInfo.i}].${name}`
-      : name
-    const handleChange = e => {
-      const field = get(form.fields, fullName)
-      const newField = {
-        ...field,
-        value: e.target.value
-      }
-      const errors = validateField(newField)
-      newField.errors = errors
-      form.setFormField(newField)
-    }
-    useEffect(() => {
-      const field = {
-        name: fullName,
-        value: initialValue || getInitialValue(Field, rest),
-        validators: getValidators(rest),
-        convertTo,
-        errors: []
-      }
-      const isUser = false
-      form.setFormField(field, isUser)
-    }, [form.setField])
-
     return (
-      <FormContext.Consumer>
-        {form => {
-          const field = get(form.fields, fullName)
-          if (!field) {
-            return null
+      <ListContext.Consumer>
+        {listInfo => {
+          const { name, initialValue, convertTo } = rest
+          const fullName = listInfo
+            ? `${listInfo.name}.value[${listInfo.i}].${name}`
+            : name
+
+          const listProps = {}
+          if (listInfo) {
+            const { i, name } = listInfo
+            const fullName = `${name}.value[${i}].${rest.name}`
+            const id = `${name}:${i}::${rest.name}:`
+            listProps.id = id
+            if (rest.name) {
+              listProps.name = fullName
+            }
           }
+
           return (
-            <VisibilityContext.Consumer>
-              {visibility => {
-                if (visibility.isVisible === false) {
-                  if (field.isVisible !== false) {
-                    const isUser = false
-                    field.isVisible = false
-                    form.setFormField({ ...field }, isUser)
+            <FormContext.Consumer>
+              {form => {
+                //useEffect(() => {
+                //}, [form.setFormField])
+
+                const field = get(form.fields, fullName)
+                if (!field) {
+                  const field = {
+                    name,
+                    value: initialValue || getInitialValue(Field, rest),
+                    validators: getValidators(rest),
+                    convertTo,
+                    errors: []
                   }
+                  const isUser = false
+                  form.setFormField(field, fullName, isUser)
+
                   return null
                 }
+
                 return (
-                  <ListContext.Consumer>
-                    {listInfo => {
-                      const listProps = {}
-                      if (listInfo) {
-                        const { i, name } = listInfo
-                        const fullName = `${name}.value[${i}].${rest.name}`
-                        const id = `${name}:${i}::${rest.name}:`
-                        listProps.id = id
-                        if (rest.name) {
-                          listProps.name = fullName
+                  <VisibilityContext.Consumer>
+                    {visibility => {
+                      if (visibility.isVisible === false) {
+                        if (field.isVisible !== false) {
+                          const isUser = false
+                          field.isVisible = false
+                          form.setFormField({ ...field }, isUser)
                         }
+                        return null
+                      }
+
+                      const handleChange = e => {
+                        const field = get(form.fields, fullName)
+                        const newField = {
+                          ...field,
+                          value: e.target.value
+                        }
+                        const errors = validateField(newField)
+                        newField.errors = errors
+                        form.setFormField(newField, fullName)
                       }
                       return (
                         <Field
@@ -101,13 +104,13 @@ const asFieldHoc = Field => {
                         />
                       )
                     }}
-                  </ListContext.Consumer>
+                  </VisibilityContext.Consumer>
                 )
               }}
-            </VisibilityContext.Consumer>
+            </FormContext.Consumer>
           )
         }}
-      </FormContext.Consumer>
+      </ListContext.Consumer>
     )
   }
 }

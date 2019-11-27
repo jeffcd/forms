@@ -103,8 +103,8 @@ const Form = ({
 }) => {
   const [form, setForm] = useState(formSaved)
 
-  const updateFormField = (updatedField, isUser = true) => {
-    set(form.fields, updatedField.name, updatedField)
+  const updateFormField = (updatedField, path, isUser = true) => {
+    set(form.fields, path, updatedField)
     if (isUser) {
       form.state = 'dirty'
     }
@@ -114,13 +114,13 @@ const Form = ({
   const addItemToList = to => {
     const field = get(form.fields, to)
     field.value.push({})
-    updateFormField(field)
+    updateFormField(field, to)
   }
 
   const removeItemFromList = (from, index) => {
     const field = get(form.fields, from)
     field.value.splice(index, 1)
-    updateFormField(field)
+    updateFormField(field, from)
   }
 
   const listActions = {

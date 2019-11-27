@@ -1,23 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import FormContext from '../FormContext'
 import ListContext from '../ListContext'
 
 const withListActionsHoc = Component => {
   return function withListActionsHoc({ ...rest }) {
-    const listInfo = useContext(ListContext)
-    const listProps = {}
-    if (listInfo) {
-      const { name, i } = listInfo
-      const to = rest.to
-      const from = rest.from
-      if (to) {
-        listProps.to = `${name}.value[${i}].${to}`
-      }
-      if (from) {
-        listProps.from = `${name}`
-        listProps.index = i
-      }
-    }
     return (
       <FormContext.Consumer>
         {form => {
@@ -25,11 +11,30 @@ const withListActionsHoc = Component => {
             return null
           }
           return (
-            <Component
-              listActions={form.listActions}
-              {...rest}
-              {...listProps}
-            />
+            <ListContext.Consumer>
+              {listInfo => {
+                const listProps = {}
+                if (listInfo) {
+                  const { name, i } = listInfo
+                  const to = rest.to
+                  const from = rest.from
+                  if (to) {
+                    listProps.to = `${name}.value[${i}].${to}`
+                  }
+                  if (from) {
+                    listProps.from = `${name}`
+                    listProps.index = i
+                  }
+                }
+                return (
+                  <Component
+                    listActions={form.listActions}
+                    {...rest}
+                    {...listProps}
+                  />
+                )
+              }}
+            </ListContext.Consumer>
           )
         }}
       </FormContext.Consumer>
