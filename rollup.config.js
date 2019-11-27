@@ -72,8 +72,8 @@ export default [
     input: './index.js',
     output: [
       {
-        file: pkg.prodMin,
-        name: pkg.prodMin,
+        file: pkg['umd:main'],
+        name: pkg['umd:main'],
         format: 'umd',
         globals: {
           'lodash/set': '_.set',

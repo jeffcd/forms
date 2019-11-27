@@ -3,8 +3,8 @@
   "version": "0.0.13",
   "description": "Glue It - Dead Simple, but powerful forms",
   "main": "dist-index.js",
+  "umd:main": "forms.umd.production.min.js",
   "module": "dist-index.es.js",
-  "prodMin": "forms.umd.production.min.js",
   "scripts": {
     "start": "back start",
     "start:prod": "NODE_ENV=production back start",
@@ -13,6 +13,13 @@
     "lint-prettier": "eslint . --fix && pretty-quick --staged",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "dist-index.es.js",
+    "dist-index.es.js.map",
+    "dist-index.js",
+    "dist-index.js.map",
+    "forms.umd.production.min.js"
+  ],
   "author": "Jeff Decker",
   "license": "MIT",
   "devDependencies": {
