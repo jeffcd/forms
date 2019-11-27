@@ -4,10 +4,12 @@
   "description": "Glue It - Dead Simple, but powerful forms",
   "main": "dist-index.js",
   "module": "dist-index.es.js",
+  "prodMin": "forms.umd.production.min.js",
   "scripts": {
     "start": "back start",
     "start:prod": "NODE_ENV=production back start",
     "build": "NODE_ENV=production back build",
+    "build-pkg": "rollup -c",
     "lint-prettier": "eslint . --fix && pretty-quick --staged",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,17 +20,17 @@
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
     "@glueit/back": "0.0.26",
-    "@glueit/material-theme": "0.0.5",
     "@glueit/eslint-config": "0.0.3",
+    "@glueit/material-theme": "0.0.5",
     "@glueit/prettier-config": "0.0.2",
     "@svgr/rollup": "^4.3.3",
+    "lodash": "^4.17.15",
     "rollup": "^1.27.4",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
-    "rollup-plugin-terser": "^5.1.2",
-    "lodash": "^4.17.15"
+    "rollup-plugin-terser": "^5.1.2"
   },
   "eslintConfig": {
     "extends": "@glueit/eslint-config"
