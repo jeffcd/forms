@@ -39,7 +39,9 @@ $ npm i @glueit/forms
 
 ## Sample forms
 
-You can see a sample form by cloning this repo and running these commands.
+[Sample Form on Code Sandbox](https://codesandbox.io/s/hardcore-chebyshev-m3ml8)
+
+You can run a sample form by cloning this repo and running these commands.
 
 ```
 npm i
