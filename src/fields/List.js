@@ -2,7 +2,13 @@ import React from 'react'
 import ListContext from '../ListContext'
 import asField from '../hoc/asField'
 
-const List = ({ children, name, value }) => {
+const List = ({
+  children,
+  name,
+  value,
+  minLength = 0,
+  maxLength = 1000000
+}) => {
   const arr = Array(value.length).fill(1)
   const childrenArr = Array.isArray(children) ? children : [children]
   return (
@@ -10,7 +16,10 @@ const List = ({ children, name, value }) => {
       {arr.map((a, i) => {
         const listInfo = {
           name,
-          i
+          i,
+          minLength: parseInt(minLength),
+          maxLength: parseInt(maxLength),
+          length: value.length
         }
         return (
           <React.Fragment key={i}>

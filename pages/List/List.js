@@ -131,7 +131,7 @@ const PList = () => {
             <Input name="duration" label="Years / months duration" />
           </div>
           <h6>Your Managers</h6>
-          <List name="managers" minSize="1" maxSize="2">
+          <List name="managers" minLength="1" maxLength="2">
             <div>
               <Input name="name" label="Manager" />
             </div>

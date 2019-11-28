@@ -113,14 +113,24 @@ const Form = ({
 
   const addItemToList = to => {
     const field = get(form.fields, to)
-    field.value.push({})
-    updateFormField(field, to)
+    if (
+      field.validators.maxLength &&
+      field.value.length < field.validators.maxLength
+    ) {
+      field.value.push({})
+      updateFormField(field, to)
+    }
   }
 
   const removeItemFromList = (from, index) => {
     const field = get(form.fields, from)
-    field.value.splice(index, 1)
-    updateFormField(field, from)
+    if (
+      field.validators.minLength &&
+      field.value.length > field.validators.minLength
+    ) {
+      field.value.splice(index, 1)
+      updateFormField(field, from)
+    }
   }
 
   const listActions = {
