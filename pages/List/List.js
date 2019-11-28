@@ -4,6 +4,7 @@ import SimpleStates from '../../src/observers/SimpleStates'
 import asField from '../../src/hoc/asField'
 import withFormState from '../../src/hoc/withFormState'
 import withListActions from '../../src/hoc/withListActions'
+import VisibilityGroup from '../../src/observers/VisibilityGroup'
 import Form from '../../src'
 
 const Input = asField(
@@ -67,6 +68,10 @@ const RemoveListItem = withListActions(({ text, from, index, listActions }) => {
   )
 })
 
+const nameMessages = {
+  match: 'Your name must begin with Jeff.'
+}
+
 const PList = () => {
   const handleSubmit = async (e, body, actions) => {
     e.preventDefault()
@@ -86,15 +91,38 @@ const PList = () => {
   return (
     <Form onSubmit={(e, form, actions) => handleSubmit(e, form, actions)}>
       <div>
-        <Input name="name" label="Your Name" />
+        <Input
+          name="name"
+          label="Your Name"
+          required
+          match="^Jeff"
+          messages={nameMessages}
+        />
       </div>
       <div>
-        <Input name="age" label="Your Age" />
+        <Input name="age" label="Your Age" min="16" max="65" />
       </div>
+
+      <VisibilityGroup
+        isVisible={form => form.fields.age && form.fields.age.value > 18}
+      >
+        <Input name="numberJobs" label="Number of jobs..." />
+        <VisibilityGroup
+          isVisible={form =>
+            form.fields.numberJobs && form.fields.numberJobs.value > 5
+          }
+        >
+          Wow that is a lot!
+          <Input
+            name="managerRating"
+            label="What would the average manager give on you a scale 1-10?"
+          />
+        </VisibilityGroup>
+      </VisibilityGroup>
 
       <h3>Your Employment History</h3>
       <div>
-        <List minSize="2" maxSize="5" name="employers">
+        <List minLength="2" maxLength="5" name="employers">
           <h5>Employer Entry</h5>
           <RemoveListItem from text="Remove Employer" />
           <div>

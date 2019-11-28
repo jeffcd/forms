@@ -190,9 +190,12 @@ For all three of these `actions` you can specify your own type. For example, may
 
 Apply any or all of the following to your fields as needed.
 
-- required
-- maxLength
-- minLength
+- required (any)
+- maxLength (string, array)
+- minLength (string, array)
+- max (numeric)
+- min (numeric)
+- match (regexp)
 
 <a name="custom-validators"></a>
 

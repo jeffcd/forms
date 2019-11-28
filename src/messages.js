@@ -1,7 +1,10 @@
 const messages = {
-  required: 'The field is required.',
-  maxLength: 'Exceeded the max length.',
-  minLength: 'The min length is not met.'
+  required: '%name% is required.',
+  maxLength: '%name% exceeds the max length of %param%.',
+  minLength: '%name% is less that the min length of %param%.',
+  max: '%name% must be less than or equal to %param%.',
+  min: '%name% must be greater or equal to %param%.',
+  match: '%name% does not match the required expression %param%.'
 }
 
 const registerMessages = customMessages => {

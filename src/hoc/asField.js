@@ -19,11 +19,21 @@ const getValidators = props => {
 
 const errorMessages = messages
 
-const getErrorMessages = errors => errors.map(error => errorMessages[error])
+const getErrorMessages = ({ props, field }) => {
+  return field.errors.map(error => {
+    let message = errorMessages[error]
+    if (props.messages && props.messages[error]) {
+      message = props.messages[error]
+    }
+    return message
+      .replace('%name%', props.label)
+      .replace('%param%', props[error])
+  })
+}
 
-const getInitialValue = (Field, { minSize = 0 }) => {
+const getInitialValue = (Field, { minLength = 0 }) => {
   if (Field.type === 'list') {
-    const size = parseInt(minSize)
+    const size = parseInt(minLength)
     return Array(size)
   }
 
@@ -98,7 +108,7 @@ const asFieldHoc = Field => {
                         <Field
                           onChange={handleChange}
                           value={field.value}
-                          errors={getErrorMessages(field.errors)}
+                          errors={getErrorMessages({ props: rest, field })}
                           {...rest}
                           {...listProps}
                         />

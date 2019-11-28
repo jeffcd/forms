@@ -1,7 +1,10 @@
 const validatorFunctions = {
   required: ({ value }, required) => required && !!value.length,
   maxLength: ({ value }, maxLength) => value.length <= maxLength,
-  minLength: ({ value }, minLength) => value.length >= minLength
+  minLength: ({ value }, minLength) => value.length >= minLength,
+  max: ({ value }, max) => parseInt(value) <= parseInt(max),
+  min: ({ value }, min) => parseInt(value) >= parseInt(min),
+  match: ({ value }, regexp) => new RegExp(regexp).test(value)
 }
 
 const validateField = field => {
