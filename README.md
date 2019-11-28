@@ -310,14 +310,14 @@ Notice that we create a `List` with name of `employers`. The `value` of this fie
 ```
 <Form>
   <h3>Your Employment History</h3>
-  <List minSize="2" maxSize="5" name="employers">
+  <List minLength="2" maxLength="5" name="employers">
     <h5>Employer Entry</h5>
     <RemoveListItem from text="Remove Employer" />
     <Input name="employer" label="Employer" required />
     <Input name="title" label="Your Title" required />
     <Input name="duration" label="Years / months duration" />
     <h6>Your Managers</h6>
-    <List name="managers" minSize="1" maxSize="2">
+    <List name="managers" minLength="1" maxLength="2">
       <Input name="name" label="Manager" />
       <RemoveListItem from text="Remove Manager" />
     </List>
