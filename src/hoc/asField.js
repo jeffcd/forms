@@ -89,7 +89,7 @@ const asFieldHoc = Field => {
                         if (field.isVisible !== false) {
                           const isUser = false
                           field.isVisible = false
-                          form.setFormField({ ...field }, isUser)
+                          form.setFormField({ ...field }, fullName, isUser)
                         }
                         return null
                       }

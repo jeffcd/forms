@@ -31,6 +31,12 @@ const convertToData = form => {
       // do nothing
     } else if (Array.isArray(value)) {
       body[name] = convertArrToDataArr(value)
+    } else if (typeof value === 'undefined') {
+      if (Array.isArray(field)) {
+        body[name] = convertArrToDataArr(field)
+      } else {
+        body[name] = convertToData({ fields: field })
+      }
     } else {
       if (field.convertTo) {
         const fn = field.convertTo.fn
@@ -65,6 +71,12 @@ const traverseForm = form => handler => {
       // do nothing
     } else if (Array.isArray(value)) {
       traverseArr(value)
+    } else if (typeof value === 'undefined') {
+      if (Array.isArray(field)) {
+        traverseArr(field)
+      } else {
+        traverseForm({ fields: field })(handler)
+      }
     } else {
       handler(field)
     }

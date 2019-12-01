@@ -119,6 +119,21 @@ const PList = () => {
           />
         </VisibilityGroup>
       </VisibilityGroup>
+      <Input
+        name="references[0].name"
+        label="Your Reference Name #1"
+        required
+      />
+      <Input name="references[0].phone" label="Phone" required />
+      <Input
+        name="references[1].name"
+        label="Your Reference Name #2"
+        required
+      />
+      <Input name="references[1].phone" label="Phone" required />
+
+      <Input name="skills[0].first" label="Your Best Skill" required />
+      <Input name="skills.[1].second" label="Your Second Skill" required />
 
       <h3>Your Employment History</h3>
       <div>

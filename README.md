@@ -14,6 +14,7 @@ Build React forms declaratively.
 - [Custom validators](#custom-validators)
 - [Custom messages](#custom-messages)
 - [Form states](#form-states)
+- [Objects (scoping)](#object-scoping)
 - [Lists](#lists)
 - [Visibility](#visibility)
 - [Hooks based state management](#state-management)
@@ -271,6 +272,35 @@ Pass that object to your `Form`.
 
 ```
 <Form stateStrs={stateStrs}>
+```
+
+<a name="object-scoping"></a>
+
+## Object Scoping
+
+Object scoping allows your output to have nested objects.
+
+```
+<Input name="name" label="Name" required />
+<Input name="skills.first" label="Your Best Skill" required />
+<Input name="skills.second" label="Your Second Skill" required />
+
+<Input name="references[0].name" label="Your Reference Name #1" required />
+<Input name="references[0].phone" label="Phone" required />
+<Input name="references[1].name" label="Your Reference Name #2" required />
+<Input name="references[1].phone" label="Phone" required />
+```
+
+Will create the following in your form output:
+
+```
+{
+  name: 'John Doe',
+  skills: {
+    first: '...',
+    second: '...
+  }
+}
 ```
 
 <a name="lists"></a>
