@@ -85,12 +85,12 @@ const asFieldHoc = Field => {
                 return (
                   <VisibilityContext.Consumer>
                     {visibility => {
+                      if (field.isVisible !== visibility.isVisible) {
+                        const isUser = false
+                        field.isVisible = visibility.isVisible
+                        form.setFormField({ ...field }, fullName, isUser)
+                      }
                       if (visibility.isVisible === false) {
-                        if (field.isVisible !== false) {
-                          const isUser = false
-                          field.isVisible = false
-                          form.setFormField({ ...field }, fullName, isUser)
-                        }
                         return null
                       }
 
