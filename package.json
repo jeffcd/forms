@@ -9,9 +9,9 @@
     "start": "back start",
     "start:prod": "NODE_ENV=production back start",
     "build": "NODE_ENV=production back build",
+    "test": "back test",
     "build-pkg": "rollup -c",
-    "lint-prettier": "eslint . --fix && pretty-quick --staged",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint-prettier": "eslint . --fix && pretty-quick --staged"
   },
   "files": [
     "dist-index.es.js",
@@ -26,10 +26,12 @@
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
-    "@glueit/back": "0.0.31",
+    "@glueit/back": "0.0.32",
     "@glueit/eslint-config": "0.0.3",
-    "@glueit/material-theme": "0.0.5",
+    "@glueit/material-theme": "0.0.6",
     "@glueit/prettier-config": "0.0.2",
+    "@material-ui/core": "^4.3.3",
+    "@material-ui/icons": "^4.2.1",
     "@svgr/rollup": "^4.3.3",
     "lodash": "^4.17.15",
     "rollup": "^1.27.4",

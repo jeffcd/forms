@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form: Renders Empty 1`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><div><label for=\\"age\\">Your Age</label><br><input id=\\"input-undefined\\" name=\\"age\\" label=\\"Your Age\\" value=\\"\\"><span></span></div></div><div style=\\"display: none;\\"><div style=\\"display: none;\\">Wow that is a lot!</div></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Renders Empty 2`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><div><label for=\\"age\\">Your Age</label><br><input id=\\"input-undefined\\" name=\\"age\\" label=\\"Your Age\\" value=\\"\\"><span>Your Age must be greater or equal to 16.</span></div></div><div style=\\"display: none;\\"><div style=\\"display: none;\\">Wow that is a lot!</div></div>There are errors...<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;

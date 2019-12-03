@@ -4,3 +4,4 @@ dist
 .db.json
 dist-index*
 forms.umd.*
+coverage
