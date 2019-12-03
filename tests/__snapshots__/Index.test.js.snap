@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form: Clear 1`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Clear 2`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span>undefined is required.</span></div>There are errors...<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Clear 3`] = `
+Object {
+  "firstName": "Jeff",
+}
+`;
+
+exports[`Form: Error 1`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Error 2`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span>undefined is required.</span></div>There are errors...<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Error 3`] = `
+Object {
+  "firstName": "Jeff",
+}
+`;
+
+exports[`Form: Error: Custom 1`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Error: Custom 2`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span>undefined is required.</span></div>There are errors...<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Error: Custom 3`] = `Object {}`;
+
+exports[`Form: Error: Custom 4`] = `
+Object {
+  "firstName": "Jeff",
+}
+`;
+
+exports[`Form: Error: Custom 5`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"Jeff\\"><span></span></div>There was a server error. Please try again later.<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Pristine 1`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Pristine 2`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span>undefined is required.</span></div>There are errors...<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Pristine 3`] = `
+Object {
+  "firstName": "Jeff",
+}
+`;
+
+exports[`Form: Scope 1`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"references[0].name\\">Your Reference Name #1</label><br><input id=\\"input-undefined\\" name=\\"references[0].name\\" label=\\"Your Reference Name #1\\" required=\\"\\" value=\\"\\"><span></span></div><div><label for=\\"references[0].phone\\">Phone</label><br><input id=\\"input-undefined\\" name=\\"references[0].phone\\" label=\\"Phone\\" required=\\"\\" value=\\"\\"><span></span></div><div><label for=\\"references[1].name\\">Your Reference Name #2</label><br><input id=\\"input-undefined\\" name=\\"references[1].name\\" label=\\"Your Reference Name #2\\" value=\\"\\"><span></span></div><div><label for=\\"references[1].phone\\">Phone</label><br><input id=\\"input-undefined\\" name=\\"references[1].phone\\" label=\\"Phone\\" value=\\"\\"><span></span></div><div><label for=\\"skills[0].first\\">Your Best Skill</label><br><input id=\\"input-undefined\\" name=\\"skills[0].first\\" label=\\"Your Best Skill\\" required=\\"\\" value=\\"\\"><span></span></div><div><label for=\\"skills[1].second\\">Your Second Skill</label><br><input id=\\"input-undefined\\" name=\\"skills[1].second\\" label=\\"Your Second Skill\\" value=\\"\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Scope 2`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"references[0].name\\">Your Reference Name #1</label><br><input id=\\"input-undefined\\" name=\\"references[0].name\\" label=\\"Your Reference Name #1\\" required=\\"\\" value=\\"\\"><span>Your Reference Name #1 is required.</span></div><div><label for=\\"references[0].phone\\">Phone</label><br><input id=\\"input-undefined\\" name=\\"references[0].phone\\" label=\\"Phone\\" required=\\"\\" value=\\"\\"><span>Phone is required.</span></div><div><label for=\\"references[1].name\\">Your Reference Name #2</label><br><input id=\\"input-undefined\\" name=\\"references[1].name\\" label=\\"Your Reference Name #2\\" value=\\"\\"><span></span></div><div><label for=\\"references[1].phone\\">Phone</label><br><input id=\\"input-undefined\\" name=\\"references[1].phone\\" label=\\"Phone\\" value=\\"\\"><span></span></div><div><label for=\\"skills[0].first\\">Your Best Skill</label><br><input id=\\"input-undefined\\" name=\\"skills[0].first\\" label=\\"Your Best Skill\\" required=\\"\\" value=\\"\\"><span>Your Best Skill is required.</span></div><div><label for=\\"skills[1].second\\">Your Second Skill</label><br><input id=\\"input-undefined\\" name=\\"skills[1].second\\" label=\\"Your Second Skill\\" value=\\"\\"><span></span></div>There are errors...<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Scope 3`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"references[0].name\\">Your Reference Name #1</label><br><input id=\\"input-undefined\\" name=\\"references[0].name\\" label=\\"Your Reference Name #1\\" required=\\"\\" value=\\"\\"><span></span></div><div><label for=\\"references[0].phone\\">Phone</label><br><input id=\\"input-undefined\\" name=\\"references[0].phone\\" label=\\"Phone\\" required=\\"\\" value=\\"\\"><span></span></div><div><label for=\\"references[1].name\\">Your Reference Name #2</label><br><input id=\\"input-undefined\\" name=\\"references[1].name\\" label=\\"Your Reference Name #2\\" value=\\"\\"><span></span></div><div><label for=\\"references[1].phone\\">Phone</label><br><input id=\\"input-undefined\\" name=\\"references[1].phone\\" label=\\"Phone\\" value=\\"\\"><span></span></div><div><label for=\\"skills[0].first\\">Your Best Skill</label><br><input id=\\"input-undefined\\" name=\\"skills[0].first\\" label=\\"Your Best Skill\\" required=\\"\\" value=\\"\\"><span></span></div><div><label for=\\"skills[1].second\\">Your Second Skill</label><br><input id=\\"input-undefined\\" name=\\"skills[1].second\\" label=\\"Your Second Skill\\" value=\\"\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Scope 4`] = `
+Object {
+  "references": Array [
+    Object {
+      "name": "Jeff Decker",
+      "phone": "1234567890",
+    },
+    Object {
+      "name": "",
+      "phone": "",
+    },
+  ],
+  "skills": Array [
+    Object {
+      "first": "coding",
+    },
+    Object {
+      "second": "",
+    },
+  ],
+}
+`;

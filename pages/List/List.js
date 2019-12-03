@@ -72,6 +72,10 @@ const nameMessages = {
   match: 'Your name must begin with Jeff.'
 }
 
+const stateStrs = {
+  error_server: 'There was a server error.'
+}
+
 const PList = () => {
   const handleSubmit = async (e, body, actions) => {
     e.preventDefault()
@@ -89,7 +93,10 @@ const PList = () => {
     console.log(result)
   }
   return (
-    <Form onSubmit={(e, form, actions) => handleSubmit(e, form, actions)}>
+    <Form
+      onSubmit={(e, form, actions) => handleSubmit(e, form, actions)}
+      stateStrs={stateStrs}
+    >
       <div>
         <Input
           name="name"

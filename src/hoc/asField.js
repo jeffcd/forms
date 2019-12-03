@@ -64,9 +64,6 @@ const asFieldHoc = Field => {
           return (
             <FormContext.Consumer>
               {form => {
-                //useEffect(() => {
-                //}, [form.setFormField])
-
                 const field = get(form.fields, fullName)
                 if (!field) {
                   const field = {

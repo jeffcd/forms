@@ -34,16 +34,17 @@ const Input = asField(
   }
 )
 
-it('Form: Renders Empty', () => {
-  const handleSubmit = jest.fn()
+it('Form: Simple State', () => {
+  const submitSpy = jest.fn()
+  let bodySpy = {}
   const form = (
     <Form
-      onSubmit={(e, form, actions) => {
-        console.log(form)
-        handleSubmit(e, form, actions)
+      onSubmit={(e, body, actions) => {
+        bodySpy = body
+        submitSpy()
       }}
     >
-      <Input name="firstName" required />
+      <Input id="firstName" name="firstName" required />
       <SimpleStates />
       <button type="submit" id="submit-button">
         Submit
@@ -53,8 +54,17 @@ it('Form: Renders Empty', () => {
   const tree = mount(form)
 
   expect(tree.html()).toMatchSnapshot()
+
   tree.find('form').simulate('submit')
   tree.find('#submit-button').simulate('click')
   expect(tree.html()).toMatchSnapshot()
-  expect(handleSubmit).toHaveBeenCalledTimes(0)
+  expect(submitSpy).toHaveBeenCalledTimes(0)
+
+  tree
+    .find('#input-firstName')
+    .simulate('change', { target: { name: 'firstName', value: 'Jeff' } })
+  tree.find('#submit-button').simulate('click')
+  tree.find('form').simulate('submit')
+  expect(bodySpy).toMatchSnapshot()
+  expect(submitSpy).toHaveBeenCalledTimes(1)
 })

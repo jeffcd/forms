@@ -1,5 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Form: Renders Empty 1`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><div><label for=\\"age\\">Your Age</label><br><input id=\\"input-undefined\\" name=\\"age\\" label=\\"Your Age\\" value=\\"\\"><span></span></div></div><div style=\\"display: none;\\"><div style=\\"display: none;\\">Wow that is a lot!</div></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+exports[`Form: Visibility Group 1`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><div><label for=\\"age\\">Your Age</label><br><input id=\\"input-age\\" name=\\"age\\" label=\\"Your Age\\" value=\\"\\"><span></span></div></div><div style=\\"display: none;\\"><div style=\\"display: none;\\">Wow that is a lot!</div></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
 
-exports[`Form: Renders Empty 2`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><div><label for=\\"age\\">Your Age</label><br><input id=\\"input-undefined\\" name=\\"age\\" label=\\"Your Age\\" value=\\"\\"><span>Your Age must be greater or equal to 16.</span></div></div><div style=\\"display: none;\\"><div style=\\"display: none;\\">Wow that is a lot!</div></div>There are errors...<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+exports[`Form: Visibility Group 2`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><div><label for=\\"age\\">Your Age</label><br><input id=\\"input-age\\" name=\\"age\\" label=\\"Your Age\\" value=\\"\\"><span>Your Age must be greater or equal to 16.</span></div></div><div style=\\"display: none;\\"><div style=\\"display: none;\\">Wow that is a lot!</div></div>There are errors...<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Visibility Group 3`] = `Object {}`;
+
+exports[`Form: Visibility Group 4`] = `
+Object {
+  "age": "22",
+  "numberJobs": "",
+}
+`;
+
+exports[`Form: Visibility Group 5`] = `
+Object {
+  "age": "22",
+  "managerRating": "",
+  "numberJobs": "9",
+}
+`;
+
+exports[`Form: Visibility Group 6`] = `
+Object {
+  "age": "22",
+  "managerRating": "5",
+  "numberJobs": "9",
+}
+`;
+
+exports[`Form: Visibility Group 7`] = `
+Object {
+  "age": "16",
+}
+`;
+
+exports[`Form: Visibility Group 8`] = `
+Object {
+  "age": "16",
+}
+`;

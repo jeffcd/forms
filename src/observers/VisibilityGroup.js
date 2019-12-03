@@ -6,17 +6,24 @@ const hidden = children => <div style={{ display: 'none' }}>{children}</div>
 
 const SimpleStates = ({ form, isVisible, children }) => {
   const [visible, setVisible] = useState({})
-
   const inboundIsVisible = isVisible(form)
-  if (visible.isVisible !== inboundIsVisible) {
-    setVisible({ isVisible: inboundIsVisible })
-  }
-
   return (
-    <VisibilityContext.Provider value={visible}>
-      {visible.isVisible !== false && children}
-      {visible.isVisible === false && hidden(children)}
-    </VisibilityContext.Provider>
+    <VisibilityContext.Consumer>
+      {visibility => {
+        const parentIsVisible = visibility.isVisible !== false
+        const isVisible = inboundIsVisible && parentIsVisible
+
+        if (visible.isVisible !== isVisible) {
+          setVisible({ isVisible: isVisible })
+        }
+        return (
+          <VisibilityContext.Provider value={visible}>
+            {visible.isVisible !== false && children}
+            {visible.isVisible === false && hidden(children)}
+          </VisibilityContext.Provider>
+        )
+      }}
+    </VisibilityContext.Consumer>
   )
 }
 

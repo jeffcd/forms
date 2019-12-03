@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Form: Renders Empty 1`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-undefined\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+exports[`Form: Simple State 1`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
 
-exports[`Form: Renders Empty 2`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-undefined\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span>undefined is required.</span></div>There are errors...<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+exports[`Form: Simple State 2`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span>undefined is required.</span></div>There are errors...<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Simple State 3`] = `
+Object {
+  "firstName": "Jeff",
+}
+`;

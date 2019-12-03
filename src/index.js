@@ -6,13 +6,10 @@ import validateField, { registerValidators } from './validateField'
 import { registerMessages } from './messages'
 import { registerStateStrs } from './formStates'
 
-let formSaved = JSON.parse(sessionStorage.getItem('formContext'))
-if (!formSaved) {
-  formSaved = {
-    fields: {},
-    errorCount: 0,
-    state: 'pristine'
-  }
+const baseForm = {
+  fields: {},
+  errorCount: 0,
+  state: 'pristine'
 }
 
 const convertToData = form => {
@@ -113,7 +110,7 @@ const Form = ({
   messages = {},
   stateStrs = {}
 }) => {
-  const [form, setForm] = useState(formSaved)
+  const [form, setForm] = useState({ ...baseForm, ...{ fields: {} } })
 
   const updateFormField = (updatedField, path, isUser = true) => {
     set(form.fields, path, updatedField)

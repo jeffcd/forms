@@ -8,9 +8,6 @@ const withListActionsHoc = Component => {
     return (
       <FormContext.Consumer>
         {form => {
-          if (!form) {
-            return null
-          }
           return (
             <ListContext.Consumer>
               {listInfo => {

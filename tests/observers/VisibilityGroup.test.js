@@ -4,8 +4,6 @@ import VisibilityGroup from '../../src/observers/VisibilityGroup'
 import asField from '../../src/hoc/asField'
 import SimpleStates from '../../src/observers/SimpleStates'
 
-console.log(global.mount, mount)
-
 const Input = asField(
   ({
     onChange,
@@ -37,23 +35,24 @@ const Input = asField(
   }
 )
 
-it('Form: Renders Empty', () => {
-  const handleSubmit = jest.fn()
+it('Form: Visibility Group', () => {
+  const submitSpy = jest.fn()
+  let bodySpy = {}
   const form = (
     <Form
-      onSubmit={(e, form, actions) => {
-        console.log(form)
-        handleSubmit(e, form, actions)
+      onSubmit={(e, body, actions) => {
+        bodySpy = body
+        submitSpy()
       }}
     >
       <div>
-        <Input name="age" label="Your Age" min="16" max="65" />
+        <Input id="age" name="age" label="Your Age" min="16" max="65" />
       </div>
 
       <VisibilityGroup
         isVisible={form => form.fields.age && form.fields.age.value > 18}
       >
-        <Input name="numberJobs" label="Number of jobs..." />
+        <Input id="numberJobs" name="numberJobs" label="Number of jobs..." />
         <VisibilityGroup
           isVisible={form =>
             form.fields.numberJobs && form.fields.numberJobs.value > 5
@@ -61,6 +60,7 @@ it('Form: Renders Empty', () => {
         >
           Wow that is a lot!
           <Input
+            id="managerRating"
             name="managerRating"
             label="What would the average manager give on you a scale 1-10?"
           />
@@ -75,8 +75,50 @@ it('Form: Renders Empty', () => {
   const tree = mount(form)
 
   expect(tree.html()).toMatchSnapshot()
-  tree.find('form').simulate('submit')
+
   tree.find('#submit-button').simulate('click')
+  tree.find('form').simulate('submit')
   expect(tree.html()).toMatchSnapshot()
-  expect(handleSubmit).toHaveBeenCalledTimes(0)
+  expect(bodySpy).toMatchSnapshot()
+  expect(submitSpy).toHaveBeenCalledTimes(0)
+
+  tree
+    .find('#input-age')
+    .simulate('change', { target: { name: 'age', value: '22' } })
+  tree.find('#submit-button').simulate('click')
+  tree.find('form').simulate('submit')
+  expect(bodySpy).toMatchSnapshot()
+  expect(submitSpy).toHaveBeenCalledTimes(1)
+
+  tree
+    .find('#input-numberJobs')
+    .simulate('change', { target: { name: 'numberJobs', value: '9' } })
+  tree.find('#submit-button').simulate('click')
+  tree.find('form').simulate('submit')
+  expect(bodySpy).toMatchSnapshot()
+  expect(submitSpy).toHaveBeenCalledTimes(2)
+
+  tree
+    .find('#input-managerRating')
+    .simulate('change', { target: { name: 'managerRating', value: '5' } })
+  tree.find('#submit-button').simulate('click')
+  tree.find('form').simulate('submit')
+  expect(bodySpy).toMatchSnapshot()
+  expect(submitSpy).toHaveBeenCalledTimes(3)
+
+  tree
+    .find('#input-age')
+    .simulate('change', { target: { name: 'age', value: '16' } })
+  tree.find('#submit-button').simulate('click')
+  tree.find('form').simulate('submit')
+  expect(bodySpy).toMatchSnapshot()
+  expect(submitSpy).toHaveBeenCalledTimes(4)
+
+  tree
+    .find('#input-age')
+    .simulate('change', { target: { name: 'age', value: '' } })
+  tree.find('#submit-button').simulate('click')
+  tree.find('form').simulate('submit')
+  expect(bodySpy).toMatchSnapshot()
+  expect(submitSpy).toHaveBeenCalledTimes(4)
 })
