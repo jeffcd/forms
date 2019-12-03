@@ -26,7 +26,7 @@
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
-    "@glueit/back": "0.0.32",
+    "@glueit/back": "0.0.33",
     "@glueit/eslint-config": "0.0.3",
     "@glueit/material-theme": "0.0.6",
     "@glueit/prettier-config": "0.0.2",
