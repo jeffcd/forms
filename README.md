@@ -299,7 +299,17 @@ Will create the following in your form output:
   skills: {
     first: '...',
     second: '...
-  }
+  },
+  references: [
+    {
+      name: "...",
+      phone: "...
+    },
+    {
+      name: "...",
+      phone: "...
+    }
+  ]
 }
 ```
 
@@ -371,7 +381,7 @@ import Form, {
 } from '@glueit/forms'
 ```
 
-Then wrap your field(s) as needed. Us the isVisible prop to tell the group if it is visible or not.
+Then wrap your field(s) as needed. Use the isVisible prop to tell the group if it is visible or not.
 
 ```
 <VisibilityGroup isVisible{form => form.fields.age && form.fields.age.value > 21}>
