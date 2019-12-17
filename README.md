@@ -7,6 +7,7 @@ Build React forms declaratively.
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Sample forms](#sample-forms)
+- [Hydration](#hydration)
 - [Custom fields](#custom-fields)
 - [Custom observers](#custom-observers)
 - [Intuitive and simple submit handling](#submit-handling)
@@ -52,6 +53,23 @@ npm run start
 Then open your browser at `localhost:3000`.
 
 <a name="custom-fields"></a>
+
+## Hydration
+
+You can hydrate the form (i.e. for editing data that was already saved).
+
+```
+<Form
+  data={{ age: '17' }}
+>
+  <CustomInput
+    name="age"
+    label="Age"
+    helperText="What is your age?"
+    required
+  />
+</Form>
+```
 
 ## Custom fields
 
