@@ -31,13 +31,21 @@ const getErrorMessages = ({ props, field }) => {
   })
 }
 
-const getInitialValue = (Field, { minLength = 0 }) => {
+const getInitialValue = (
+  fullName,
+  name,
+  Field,
+  { minLength = 0 },
+  data,
+  initialValue
+) => {
+  const lookupPath = fullName.replace(/\.value/g, '')
   if (Field.type === 'list') {
-    const size = parseInt(minLength)
+    const dataList = get(data, lookupPath, [])
+    const size = Math.max(dataList.length, parseInt(minLength))
     return Array(size)
   }
-
-  return ''
+  return get(data, lookupPath, initialValue || '')
 }
 
 const asFieldHoc = Field => {
@@ -68,7 +76,14 @@ const asFieldHoc = Field => {
                 if (!field) {
                   const field = {
                     name,
-                    value: initialValue || getInitialValue(Field, rest),
+                    value: getInitialValue(
+                      fullName,
+                      name,
+                      Field,
+                      rest,
+                      form.data,
+                      initialValue
+                    ),
                     validators: getValidators(rest),
                     convertTo,
                     errors: []

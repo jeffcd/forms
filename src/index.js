@@ -108,7 +108,8 @@ const Form = ({
   autoComplete = 'off',
   validators = {},
   messages = {},
-  stateStrs = {}
+  stateStrs = {},
+  data = {}
 }) => {
   const [form, setForm] = useState({ ...baseForm, ...{ fields: {} } })
 
@@ -179,7 +180,7 @@ const Form = ({
 
   return (
     <FormContext.Provider
-      value={{ ...form, setFormField: updateFormField, listActions }}
+      value={{ ...form, data, setFormField: updateFormField, listActions }}
     >
       <form
         onSubmit={e => validateForm(e)}

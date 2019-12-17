@@ -24,7 +24,7 @@ const Input = asField(
         <label htmlFor={name}>{label}</label>
         <br />
         <input
-          id={`input-${id}`}
+          id={`input-${id || name}`}
           name={name}
           value={value}
           onChange={e => onChange(e)}
@@ -76,6 +76,44 @@ const stateStrs = {
   error_server: 'There was a server error.'
 }
 
+const data = {
+  name: 'Jeff Decker 23',
+  age: 19,
+  numberJobs: 5,
+  favorites: {
+    color: 'red',
+    food: 'burger'
+  },
+  references: [
+    {
+      name: 'James',
+      phone: '123456789'
+    },
+    {
+      name: 'Janice',
+      phone: '987654321'
+    }
+  ],
+  employers: [
+    {
+      employer: 'Big Dog',
+      title: 'Chief Janitor',
+      duration: '2 years',
+      managers: [
+        {
+          name: 'cool'
+        },
+        {
+          name: 'J'
+        },
+        {
+          name: 'Pearl'
+        }
+      ]
+    }
+  ]
+}
+
 const PList = () => {
   const handleSubmit = async (e, body, actions) => {
     e.preventDefault()
@@ -96,6 +134,7 @@ const PList = () => {
     <Form
       onSubmit={(e, form, actions) => handleSubmit(e, form, actions)}
       stateStrs={stateStrs}
+      data={data}
     >
       <div>
         <Input
@@ -108,6 +147,10 @@ const PList = () => {
       </div>
       <div>
         <Input name="age" label="Your Age" min="16" max="65" />
+      </div>
+      <div>
+        <Input name="favorites.color" label="Favorite Color" />
+        <Input name="favorites.food" label="Favorite Food" />
       </div>
 
       <VisibilityGroup

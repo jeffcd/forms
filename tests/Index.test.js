@@ -248,3 +248,56 @@ it('Form: Scope', () => {
   expect(bodySpy).toMatchSnapshot()
   expect(submitSpy).toHaveBeenCalledTimes(1)
 })
+
+it('Form: Hydrate', () => {
+  const submitSpy = jest.fn()
+  let bodySpy = {}
+  const form = (
+    <Form
+      onSubmit={(e, body, actions) => {
+        bodySpy = body
+        submitSpy()
+        actions.clear()
+      }}
+      data={{
+        references: [
+          {
+            name: 'Jeff',
+            phone: '123456789'
+          }
+        ],
+        skills: [
+          {
+            first: '1st'
+          },
+          {
+            second: '2nd'
+          }
+        ]
+      }}
+    >
+      <Input
+        name="references[0].name"
+        label="Your Reference Name #1"
+        required
+      />
+      <Input name="references[0].phone" label="Phone" required />
+      <Input name="references[1].name" label="Your Reference Name #2" />
+      <Input name="references[1].phone" label="Phone" />
+
+      <Input name="skills[0].first" label="Your Best Skill" required />
+      <Input name="skills[1].second" label="Your Second Skill" />
+      <SimpleStates />
+      <button type="submit" id="submit-button">
+        Submit
+      </button>
+    </Form>
+  )
+  const tree = mount(form)
+
+  tree.find('#submit-button').simulate('click')
+  tree.find('form').simulate('submit')
+  expect(tree.html()).toMatchSnapshot()
+  expect(bodySpy).toMatchSnapshot()
+  expect(submitSpy).toHaveBeenCalledTimes(1)
+})
