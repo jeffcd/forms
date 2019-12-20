@@ -91,6 +91,12 @@ const clear = (type = '', setForm, form) => {
   setForm({ ...form })
 }
 
+const updates = (fieldUpdates = [], setForm, form) => {
+  fieldUpdates.forEach(fieldUpdate => {
+    set(form.fields, `${fieldUpdate.path}.value`, fieldUpdate.value)
+  })
+}
+
 const pristine = (type = '', setForm, form) => {
   traverseForm(form)(field => {
     field.errors = []
@@ -169,6 +175,7 @@ const Form = ({
       onSubmit(e, convertToData(form), {
         error: type => error(type, setForm, form),
         clear: type => clear(type, setForm, form),
+        updates: fieldUpdates => updates(fieldUpdates, setForm, form),
         pristine: type => pristine(type, setForm, form)
       })
     } else {
