@@ -2,6 +2,7 @@ import React from 'react'
 import get from 'lodash/get'
 import FormContext from '../FormContext'
 import VisibilityContext from '../VisibilityContext'
+import ScopeContext from '../ScopeContext'
 import ListContext from '../ListContext'
 import validateField, { validatorFunctions } from '../validateField'
 import messages from '../messages'
@@ -51,88 +52,102 @@ const getInitialValue = (
 const asFieldHoc = Field => {
   return function asFieldHoc({ ...rest }) {
     return (
-      <ListContext.Consumer>
-        {listInfo => {
-          const { name, initialValue, convertTo } = rest
-          const fullName = listInfo
-            ? `${listInfo.name}.value[${listInfo.i}].${name}`
-            : name
-
-          const listProps = {}
-          if (listInfo) {
-            const { i, name } = listInfo
-            const fullName = `${name}.value[${i}].${rest.name}`
-            const id = `${name}:${i}::${rest.name}:`
-            listProps.id = id
-            if (rest.name) {
-              listProps.name = fullName
-            }
-          }
-
+      <ScopeContext.Consumer>
+        {scope => {
           return (
-            <FormContext.Consumer>
-              {form => {
-                const field = get(form.fields, fullName)
-                if (!field) {
-                  const field = {
-                    name,
-                    value: getInitialValue(
-                      fullName,
-                      name,
-                      Field,
-                      rest,
-                      form.data,
-                      initialValue
-                    ),
-                    validators: getValidators(rest),
-                    convertTo,
-                    errors: []
-                  }
-                  const isUser = false
-                  form.setFormField(field, fullName, isUser)
+            <ListContext.Consumer>
+              {listInfo => {
+                const { name, initialValue, convertTo } = rest
+                const fullName =
+                  (scope ? `${scope}.` : '') +
+                  (listInfo
+                    ? `${listInfo.name}.value[${listInfo.i}].${name}`
+                    : name)
 
-                  return null
+                const listProps = {}
+                if (listInfo) {
+                  const { i, name } = listInfo
+                  const fullName =
+                    (scope ? `${scope}.` : '') +
+                    `${name}.value[${i}].${rest.name}`
+                  const id =
+                    (scope ? `${scope}.` : '') + `${name}:${i}::${rest.name}:`
+                  listProps.id = id
+                  if (rest.name) {
+                    listProps.name = fullName
+                  }
                 }
 
                 return (
-                  <VisibilityContext.Consumer>
-                    {visibility => {
-                      if (field.isVisible !== visibility.isVisible) {
+                  <FormContext.Consumer>
+                    {form => {
+                      const field = get(form.fields, fullName)
+                      if (!field) {
+                        const field = {
+                          name,
+                          value: getInitialValue(
+                            fullName,
+                            name,
+                            Field,
+                            rest,
+                            form.data,
+                            initialValue
+                          ),
+                          validators: getValidators(rest),
+                          convertTo,
+                          errors: []
+                        }
                         const isUser = false
-                        field.isVisible = visibility.isVisible
-                        form.setFormField({ ...field }, fullName, isUser)
-                      }
-                      if (visibility.isVisible === false) {
+                        form.setFormField(field, fullName, isUser)
+
                         return null
                       }
 
-                      const handleChange = e => {
-                        const field = get(form.fields, fullName)
-                        const newField = {
-                          ...field,
-                          value: e.target.value
-                        }
-                        const errors = validateField(newField)
-                        newField.errors = errors
-                        form.setFormField(newField, fullName)
-                      }
                       return (
-                        <Field
-                          onChange={handleChange}
-                          value={field.value}
-                          errors={getErrorMessages({ props: rest, field })}
-                          {...rest}
-                          {...listProps}
-                        />
+                        <VisibilityContext.Consumer>
+                          {visibility => {
+                            if (field.isVisible !== visibility.isVisible) {
+                              const isUser = false
+                              field.isVisible = visibility.isVisible
+                              form.setFormField({ ...field }, fullName, isUser)
+                            }
+                            if (visibility.isVisible === false) {
+                              return null
+                            }
+
+                            const handleChange = e => {
+                              const field = get(form.fields, fullName)
+                              const newField = {
+                                ...field,
+                                value: e.target.value
+                              }
+                              const errors = validateField(newField)
+                              newField.errors = errors
+                              form.setFormField(newField, fullName)
+                            }
+                            return (
+                              <Field
+                                onChange={handleChange}
+                                value={field.value}
+                                errors={getErrorMessages({
+                                  props: rest,
+                                  field
+                                })}
+                                {...rest}
+                                {...listProps}
+                              />
+                            )
+                          }}
+                        </VisibilityContext.Consumer>
                       )
                     }}
-                  </VisibilityContext.Consumer>
+                  </FormContext.Consumer>
                 )
               }}
-            </FormContext.Consumer>
+            </ListContext.Consumer>
           )
         }}
-      </ListContext.Consumer>
+      </ScopeContext.Consumer>
     )
   }
 }

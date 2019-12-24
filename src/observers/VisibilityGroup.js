@@ -4,7 +4,7 @@ import withFormStateHoc from '../hoc/withFormState'
 
 const hidden = children => <div style={{ display: 'none' }}>{children}</div>
 
-const SimpleStates = ({ form, isVisible, children }) => {
+const VisibilityGroup = ({ form, isVisible, children }) => {
   const [visible, setVisible] = useState({})
   const inboundIsVisible = isVisible(form)
   return (
@@ -27,4 +27,4 @@ const SimpleStates = ({ form, isVisible, children }) => {
   )
 }
 
-export default withFormStateHoc(SimpleStates)
+export default withFormStateHoc(VisibilityGroup)

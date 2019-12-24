@@ -1,6 +1,7 @@
 export { default as SimpleStates } from './src/observers/SimpleStates'
 export { default as FieldValue } from './src/observers/FieldValue'
 export { default as VisibilityGroup } from './src/observers/VisibilityGroup'
+export { default as Scope } from './src/observers/Scope'
 export { default as List } from './src/fields/List'
 export { default as asField } from './src/hoc/asField'
 export { default as withFormState } from './src/hoc/withFormState'
