@@ -18,6 +18,8 @@ Build React forms declaratively.
 - [Objects (scoping)](#object-scoping)
 - [Lists](#lists)
 - [Visibility](#visibility)
+- [Scope](#scope)
+- [SetField](#set-field)
 - [Hooks based state management](#state-management)
 
 <a name="prerequisites"></a>
@@ -402,9 +404,44 @@ import Form, {
 Then wrap your field(s) as needed. Use the isVisible prop to tell the group if it is visible or not.
 
 ```
-<VisibilityGroup isVisible{form => form.fields.age && form.fields.age.value > 21}>
+<VisibilityGroup isVisible={form => form.fields.age && form.fields.age.value > 21}>
 ...
 </VisibilityGroup>
+```
+
+<a name="scope"></a>
+
+## Scope
+
+You can control scope of child `Fields` by using the `Scope` component.
+
+```
+import Form, {
+  Scope
+} from '@glueit/forms'
+```
+
+Then wrap your field(s) and provide a path to your `Scope`. In this example you are wrapping a `user` object with `name` and `email`.
+
+```
+<Scope path="user">
+  <Input name="name" label="Name" required />
+  <Input name="email" label="Email" required />
+</Scope>
+```
+
+<a name="set-field"></a>
+
+## Set Field
+
+Use set field to declaratively set the value of a field. This will only run once unless you change the value attribute OR destroy the field and re-create it.
+
+```
+import Form, {
+  SetField
+} from '@glueit/forms'
+
+<SetField name="firstName" value="Jeff">
 ```
 
 <a name="state-management"></a>
