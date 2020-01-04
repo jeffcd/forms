@@ -201,7 +201,7 @@ Your submit handler gets three params.
 
 #### Optional update
 
-- actions.update([{ path: "...", value: "..." }]): Allows you to update a list of fields.
+- actions.updates([{ path: "...", value: "..." }]): Allows you to update a list of fields.
 
 #### Expected to call one of the following
 

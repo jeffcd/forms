@@ -301,3 +301,124 @@ it('Form: Hydrate', () => {
   expect(bodySpy).toMatchSnapshot()
   expect(submitSpy).toHaveBeenCalledTimes(1)
 })
+
+it('Form: Updates', () => {
+  const submitSpy = jest.fn()
+  let bodySpy = {}
+  const form = (
+    <Form
+      onSubmit={(e, body, actions) => {
+        bodySpy = body
+        submitSpy()
+        actions.updates([{ path: 'firstName', value: 'James' }])
+        actions.pristine()
+      }}
+    >
+      <Input id="firstName" name="firstName" required />
+      <SimpleStates />
+      <button type="submit" id="submit-button">
+        Submit
+      </button>
+    </Form>
+  )
+  const tree = mount(form)
+
+  expect(tree.html()).toMatchSnapshot()
+
+  tree.find('form').simulate('submit')
+  tree.find('#submit-button').simulate('click')
+  expect(tree.html()).toMatchSnapshot()
+  expect(submitSpy).toHaveBeenCalledTimes(0)
+
+  tree
+    .find('#input-firstName')
+    .simulate('change', { target: { name: 'firstName', value: 'Jeff' } })
+  tree.find('#submit-button').simulate('click')
+  tree.find('form').simulate('submit')
+  expect(bodySpy).toMatchSnapshot()
+  expect(submitSpy).toHaveBeenCalledTimes(1)
+})
+
+it('Form: Convert To Fn', () => {
+  const submitSpy = jest.fn()
+  let bodySpy = {}
+  const form = (
+    <Form
+      onSubmit={(e, body, actions) => {
+        bodySpy = body
+        submitSpy()
+        actions.updates([{ path: 'firstName', value: 'James' }])
+        actions.pristine()
+      }}
+    >
+      <Input
+        id="firstName"
+        name="firstName"
+        required
+        convertTo={{ fn: 'split', sep: ',' }}
+      />
+      <SimpleStates />
+      <button type="submit" id="submit-button">
+        Submit
+      </button>
+    </Form>
+  )
+  const tree = mount(form)
+
+  expect(tree.html()).toMatchSnapshot()
+
+  tree.find('form').simulate('submit')
+  tree.find('#submit-button').simulate('click')
+  expect(tree.html()).toMatchSnapshot()
+  expect(submitSpy).toHaveBeenCalledTimes(0)
+
+  tree
+    .find('#input-firstName')
+    .simulate('change', { target: { name: 'firstName', value: 'Decker,Jeff' } })
+  tree.find('#submit-button').simulate('click')
+  tree.find('form').simulate('submit')
+  expect(bodySpy).toMatchSnapshot()
+  expect(submitSpy).toHaveBeenCalledTimes(1)
+})
+
+it('Form: Convert To Function', () => {
+  const submitSpy = jest.fn()
+  let bodySpy = {}
+  const form = (
+    <Form
+      onSubmit={(e, body, actions) => {
+        bodySpy = body
+        submitSpy()
+        actions.updates([{ path: 'firstName', value: 'James' }])
+        actions.pristine()
+      }}
+    >
+      <Input
+        id="firstName"
+        name="firstName"
+        required
+        convertTo={{ fn: value => 'Tasty' }}
+      />
+      <SimpleStates />
+      <button type="submit" id="submit-button">
+        Submit
+      </button>
+    </Form>
+  )
+  const tree = mount(form)
+
+  expect(tree.html()).toMatchSnapshot()
+
+  tree.find('form').simulate('submit')
+  tree.find('#submit-button').simulate('click')
+  expect(tree.html()).toMatchSnapshot()
+  expect(submitSpy).toHaveBeenCalledTimes(0)
+
+  tree
+    .find('#input-firstName')
+    .simulate('change', { target: { name: 'firstName', value: 'Decker,Jeff' } })
+  tree.find('#submit-button').simulate('click')
+  tree.find('form').simulate('submit')
+  expect(bodySpy).toMatchSnapshot()
+  expect(submitSpy).toHaveBeenCalledTimes(1)
+})

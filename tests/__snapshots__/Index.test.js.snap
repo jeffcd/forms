@@ -10,6 +10,29 @@ Object {
 }
 `;
 
+exports[`Form: Convert To Fn 1`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Convert To Fn 2`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span>undefined is required.</span></div>There are errors...<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Convert To Fn 3`] = `
+Object {
+  "firstName": Array [
+    "Decker",
+    "Jeff",
+  ],
+}
+`;
+
+exports[`Form: Convert To Function 1`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Convert To Function 2`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span>undefined is required.</span></div>There are errors...<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Convert To Function 3`] = `
+Object {
+  "firstName": "Tasty",
+}
+`;
+
 exports[`Form: Error 1`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
 
 exports[`Form: Error 2`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span>undefined is required.</span></div>There are errors...<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
@@ -95,5 +118,15 @@ Object {
       "second": "",
     },
   ],
+}
+`;
+
+exports[`Form: Updates 1`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Updates 2`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span>undefined is required.</span></div>There are errors...<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Updates 3`] = `
+Object {
+  "firstName": "Jeff",
 }
 `;
