@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form: Field Value 1`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span></span></div>No name provided.<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Field Value 2`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span>undefined is required.</span></div>No name provided.<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Field Value 3`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"Jeff\\"><span></span></div>Jeff<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Field Value 4`] = `
+Object {
+  "firstName": "Jeff",
+}
+`;
+
+exports[`Form: Field Value from List 1`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"gameName\\"></label><br><input id=\\"input-undefined\\" name=\\"gameName\\" value=\\"\\"><span></span></div><div><label for=\\"users.value[0].firstName\\"></label><br><input id=\\"input-users:0::firstName:\\" name=\\"users.value[0].firstName\\" required=\\"\\" value=\\"\\"><span></span></div>No name provided.<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Field Value from List 2`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"gameName\\"></label><br><input id=\\"input-undefined\\" name=\\"gameName\\" value=\\"\\"><span></span></div><div><label for=\\"users.value[0].firstName\\"></label><br><input id=\\"input-users:0::firstName:\\" name=\\"users.value[0].firstName\\" required=\\"\\" value=\\"\\"><span>undefined is required.</span></div>No name provided.<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Field Value from List 3`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"gameName\\"></label><br><input id=\\"input-undefined\\" name=\\"gameName\\" value=\\"\\"><span></span></div><div><label for=\\"users.value[0].firstName\\"></label><br><input id=\\"input-users:0::firstName:\\" name=\\"users.value[0].firstName\\" required=\\"\\" value=\\"Jeff\\"><span></span></div>Jeff<button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Field Value from List 4`] = `
+Object {
+  "gameName": "",
+  "users": Array [
+    Object {
+      "firstName": "Jeff",
+    },
+  ],
+}
+`;

@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form: Scope with List 1`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"users.games.value[0].name\\"></label><br><input id=\\"input-users.games:0::name:\\" name=\\"users.games.value[0].name\\" value=\\"\\"><span></span></div><button id=\\"add-users.games\\" name=\\"add-users.games\\" type=\\"button\\">Add Game</button><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span></span></div><div><label for=\\"first\\"></label><br><input id=\\"input-first\\" name=\\"first\\" value=\\"\\"><span></span></div><div><label for=\\"second\\"></label><br><input id=\\"input-second\\" name=\\"second\\" value=\\"\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Scope with List 2`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"users.games.value[0].name\\"></label><br><input id=\\"input-users.games:0::name:\\" name=\\"users.games.value[0].name\\" value=\\"\\"><span></span></div><button id=\\"add-users.games\\" name=\\"add-users.games\\" type=\\"button\\">Add Game</button><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span>undefined is required.</span></div><div><label for=\\"first\\"></label><br><input id=\\"input-first\\" name=\\"first\\" value=\\"\\"><span></span></div><div><label for=\\"second\\"></label><br><input id=\\"input-second\\" name=\\"second\\" value=\\"\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Scope with List 3`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"users.games.value[0].name\\"></label><br><input id=\\"input-users.games:0::name:\\" name=\\"users.games.value[0].name\\" value=\\"\\"><span></span></div><button id=\\"add-users.games\\" name=\\"add-users.games\\" type=\\"button\\" disabled=\\"\\">Add Game</button><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"Jeff\\"><span></span></div><div><label for=\\"first\\"></label><br><input id=\\"input-first\\" name=\\"first\\" value=\\"\\"><span></span></div><div><label for=\\"second\\"></label><br><input id=\\"input-second\\" name=\\"second\\" value=\\"\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Scope with List 4`] = `
+Object {
+  "users": Object {
+    "firstName": "Jeff",
+    "games": Array [
+      Object {
+        "name": "",
+      },
+    ],
+    "skills": Object {
+      "first": "",
+      "second": "",
+    },
+  },
+}
+`;
+
+exports[`Form: Scope with List 5`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span></span></div><div><label for=\\"first\\"></label><br><input id=\\"input-first\\" name=\\"first\\" value=\\"\\"><span></span></div><div><label for=\\"second\\"></label><br><input id=\\"input-second\\" name=\\"second\\" value=\\"\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Scope with List 6`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"\\"><span>undefined is required.</span></div><div><label for=\\"first\\"></label><br><input id=\\"input-first\\" name=\\"first\\" value=\\"\\"><span></span></div><div><label for=\\"second\\"></label><br><input id=\\"input-second\\" name=\\"second\\" value=\\"\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Scope with List 7`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"Jeff\\"><span></span></div><div><label for=\\"first\\"></label><br><input id=\\"input-first\\" name=\\"first\\" value=\\"\\"><span></span></div><div><label for=\\"second\\"></label><br><input id=\\"input-second\\" name=\\"second\\" value=\\"\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Scope with List 8`] = `
+Object {
+  "users": Object {
+    "firstName": "Jeff",
+    "skills": Object {
+      "first": "",
+      "second": "",
+    },
+  },
+}
+`;

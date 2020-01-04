@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react'
 import asField from '../hoc/asField'
 
-const SetField = asField(({ onChange, value, setValue }) => {
+const SetField = asField(({ onChange, setValue }) => {
   useEffect(() => {
-    if (value !== setValue) {
-      onChange({ target: { value: setValue } })
-    }
+    onChange({ target: { value: setValue } })
   }, [setValue])
   return <></>
 })

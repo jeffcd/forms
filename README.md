@@ -199,6 +199,12 @@ Your submit handler gets three params.
 - body: This is the data for your form in field name and value pair.
 - actions: This is an object containing functions that you can call to update the form state when you are done.
 
+#### Optional update
+
+- actions.update([{ path: "...", value: "..." }]): Allows you to update a list of fields.
+
+#### Expected to call one of the following
+
 - actions.clear([type]): This will clear the form and all data.
 - actions.pristine([type]): This will leave the data in place but will set the form to pristine. Which means that there are no unsaved changes. It is useful if you are allowing ongoing edits with periodic saves.
 - actions.error([type]): When an error occurs.

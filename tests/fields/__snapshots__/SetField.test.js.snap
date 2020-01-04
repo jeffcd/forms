@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form: Set Field 1`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"Jeff\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Set Field 2`] = `"<form novalidate=\\"\\" autocomplete=\\"off\\"><div><label for=\\"firstName\\"></label><br><input id=\\"input-firstName\\" name=\\"firstName\\" required=\\"\\" value=\\"Jeff\\"><span></span></div><button type=\\"submit\\" id=\\"submit-button\\">Submit</button></form>"`;
+
+exports[`Form: Set Field 3`] = `
+Object {
+  "firstName": "Jeff",
+}
+`;

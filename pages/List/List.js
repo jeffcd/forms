@@ -1,5 +1,6 @@
 import React from 'react'
 import List from '../../src/fields/List'
+import Scope from '../../src/observers/Scope'
 import SimpleStates from '../../src/observers/SimpleStates'
 import asField from '../../src/hoc/asField'
 import withFormState from '../../src/hoc/withFormState'
@@ -151,6 +152,17 @@ const PList = () => {
       <div>
         <Input name="favorites.color" label="Favorite Color" />
         <Input name="favorites.food" label="Favorite Food" />
+      </div>
+
+      <div>
+        <Scope path="traits">
+          <Input name="eyeColor" label="Eye Color" />
+          <Input name="weight" label="Weight" />
+          <Scope path="voluntary">
+            <Input name="race" label="Race" />
+            <Input name="military" label="Military" />
+          </Scope>
+        </Scope>
       </div>
 
       <VisibilityGroup
