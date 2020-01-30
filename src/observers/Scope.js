@@ -3,9 +3,15 @@ import ScopeContext from '../ScopeContext'
 
 const Scope = ({ children, path = '' }) => {
   const [fullPath, setFullPath] = useState(false)
+  const [cachePath, setCachePath] = useState(path)
   return (
     <ScopeContext.Consumer>
       {scope => {
+        if (cachePath !== path) {
+          setFullPath(false)
+          setCachePath(path)
+          return null
+        }
         if (!fullPath) {
           if (scope) {
             setFullPath(`${scope}.${path}`)

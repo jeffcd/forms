@@ -115,7 +115,8 @@ const Form = ({
   validators = {},
   messages = {},
   stateStrs = {},
-  data = {}
+  data = {},
+  apiHandlerReference
 }) => {
   const [form, setForm] = useState({ ...baseForm, ...{ fields: {} } })
 
@@ -156,7 +157,7 @@ const Form = ({
     removeItemFromList
   }
 
-  const validateForm = e => {
+  const handleSubmit = e => {
     if (form.submit) {
       e.preventDefault()
       console.warn('validateForm: form is already in submission state')
@@ -183,16 +184,40 @@ const Form = ({
     }
   }
 
+  const validateFields = path => {
+    const subForm = { fields: get(form.fields, path, {}) }
+    let isValid = true
+    traverseForm(subForm)(field => {
+      const errors = validateField(field)
+      field.errors = errors
+      if (errors.length) {
+        isValid = false
+      }
+    })
+    setForm({ ...form })
+    return isValid
+  }
+
+  if (apiHandlerReference) {
+    apiHandlerReference.getData = () => convertToData(form)
+  }
+
   registerValidators(validators)
   registerMessages(messages)
   registerStateStrs(stateStrs)
 
   return (
     <FormContext.Provider
-      value={{ ...form, data, setFormField: updateFormField, listActions }}
+      value={{
+        ...form,
+        data,
+        setFormField: updateFormField,
+        listActions,
+        validateFields
+      }}
     >
       <form
-        onSubmit={e => validateForm(e)}
+        onSubmit={e => handleSubmit(e)}
         noValidate={noValidate}
         autoComplete={autoComplete}
       >
