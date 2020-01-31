@@ -200,6 +200,7 @@ const Form = ({
 
   if (apiHandlerReference) {
     apiHandlerReference.getData = () => convertToData(form)
+    apiHandlerReference.isDirty = () => form.state === 'dirty'
   }
 
   registerValidators(validators)
