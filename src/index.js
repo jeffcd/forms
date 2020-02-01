@@ -107,7 +107,16 @@ const pristine = (type = '', setForm, form) => {
   setForm({ ...form })
 }
 
+const saving = (type = '', setForm, form) => {
+  const state = type ? `saving_${type}` : 'saving'
+  form.state = state
+  setForm({ ...form })
+}
+
 const saved = (type = '', setForm, form) => {
+  if (!/^saving/.test(form.state)) {
+    return // If changes have been made while saving
+  }
   const state = type ? `saved_${type}` : 'saved'
   form.state = state
   setForm({ ...form })
@@ -211,6 +220,7 @@ const Form = ({
     apiHandlerReference.error = type => error(type, setForm, form)
     apiHandlerReference.clear = type => clear(type, setForm, form)
     apiHandlerReference.pristine = type => pristine(type, setForm, form)
+    apiHandlerReference.saving = type => saving(type, setForm, form)
     apiHandlerReference.saved = type => saved(type, setForm, form)
     apiHandlerReference.updates = fieldUpdates =>
       updates(fieldUpdates, setForm, form)

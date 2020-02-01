@@ -2,6 +2,7 @@ const stateStrs = {
   submit: 'Saving...',
   error: 'There are errors...',
   dirty: 'Unsaved changes...',
+  saving: '',
   saved: '',
   pristine: ''
 }
