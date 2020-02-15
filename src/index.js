@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import set from 'lodash/set'
 import get from 'lodash/get'
+import update from 'immutability-helper'
 import FormContext from './FormContext'
 import validateField, { registerValidators } from './validateField'
 import { registerMessages } from './messages'
@@ -167,9 +168,22 @@ const Form = ({
     updateFormField(field, from)
   }
 
+  const moveListItem = (listPath, fromIndex, toIndex) => {
+    const field = get(form.fields, listPath)
+    const fromItem = field.value[fromIndex]
+    field.value = update(field.value, {
+      $splice: [
+        [fromIndex, 1],
+        [toIndex, 0, fromItem]
+      ]
+    })
+    updateFormField(field, listPath)
+  }
+
   const listActions = {
     addItemToList,
-    removeItemFromList
+    removeItemFromList,
+    moveListItem
   }
 
   const handleSubmit = e => {
