@@ -11,7 +11,7 @@
     "build": "NODE_ENV=production messhall build",
     "test": "messhall test",
     "build-pkg": "rollup -c",
-    "lint-prettier": "eslint . --fix && pretty-quick --staged"
+    "lint-prettier": "eslint . --fix && pretty-quick --staged && ncu -u '/^@glueit/' -e 2"
   },
   "files": [
     "dist-index.es.js",
@@ -28,7 +28,7 @@
     "@babel/preset-react": "^7.7.4",
     "@glueit/eslint-config": "0.0.3",
     "@glueit/material-theme": "0.0.6",
-    "@glueit/messhall": "0.0.6",
+    "@glueit/messhall": "0.0.18",
     "@glueit/prettier-config": "0.0.2",
     "@material-ui/core": "^4.3.3",
     "@material-ui/icons": "^4.2.1",
@@ -39,7 +39,9 @@
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
-    "rollup-plugin-terser": "^5.1.3"
+    "rollup-plugin-terser": "^5.1.3",
+    "npm-check-updates": "^4.0.1",
+    "immutability-helper": "^3.0.1"
   },
   "eslintConfig": {
     "extends": "@glueit/eslint-config"
