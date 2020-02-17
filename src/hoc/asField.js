@@ -40,7 +40,7 @@ const getInitialValue = (
   data,
   initialValue
 ) => {
-  const lookupPath = fullName.replace(/\.value/g, '')
+  const lookupPath = fullName.replace(/\.value\[/g, '[')
   if (Field.type === 'list') {
     const dataList = get(data, lookupPath, [])
     const size = Math.max(dataList.length, parseInt(minLength))
