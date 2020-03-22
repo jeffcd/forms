@@ -57,7 +57,7 @@ const asFieldHoc = Field => {
           return (
             <ListContext.Consumer>
               {listInfo => {
-                const { name, initialValue, convertTo } = rest
+                const { name, initialValue, isUser, convertTo } = rest
                 const fullName =
                   (scope ? `${scope}.` : '') +
                   (listInfo
@@ -97,8 +97,7 @@ const asFieldHoc = Field => {
                           convertTo,
                           errors: []
                         }
-                        const isUser = false
-                        form.setFormField(field, fullName, isUser)
+                        form.setFormField(field, fullName, isUser || false)
 
                         return null
                       }

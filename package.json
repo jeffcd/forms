@@ -28,7 +28,7 @@
     "@babel/preset-react": "^7.7.4",
     "@glueit/eslint-config": "0.0.3",
     "@glueit/material-theme": "0.0.8",
-    "@glueit/messhall": "0.0.19",
+    "@glueit/messhall": "0.0.20",
     "@glueit/prettier-config": "0.0.2",
     "@material-ui/core": "^4.3.3",
     "@material-ui/icons": "^4.2.1",
