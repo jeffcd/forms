@@ -24,6 +24,9 @@ const withListActionsHoc = Component => {
                           listProps.to = `${name}.value[${i}].${to}`
 
                           const field = get(form.fields, listProps.to)
+                          if (!field) {
+                            return null
+                          }
                           const listInfo = field.validators
                           const length = field.value.length
                           if (
@@ -47,6 +50,9 @@ const withListActionsHoc = Component => {
                       } else {
                         const fullTo = (scope ? `${scope}.` : '') + to
                         const field = get(form.fields, fullTo)
+                        if (!field) {
+                          return null
+                        }
                         const listInfo = field.validators
                         const length = field.value.length
                         listProps.to = fullTo
