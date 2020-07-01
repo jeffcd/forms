@@ -194,7 +194,7 @@ const Form = ({
     }
     let errorCount = 0
     traverseForm(form)(field => {
-      const errors = validateField(field)
+      const errors = validateField({ field, fields: form.fields })
       field.errors = errors
       errorCount += errors.length
     })
@@ -218,7 +218,7 @@ const Form = ({
     const subForm = { fields: get(form.fields, path, {}) }
     let isValid = true
     traverseForm(subForm)(field => {
-      const errors = validateField(field)
+      const errors = validateField({ field, fields: form.fields })
       field.errors = errors
       if (errors.length) {
         isValid = false

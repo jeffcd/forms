@@ -113,7 +113,7 @@ const FieldWrapper = ({
       ...field,
       value: e.target.value
     }
-    const errors = validateField(newField)
+    const errors = validateField({ field: newField, fields: form.fields })
     newField.errors = errors
     form.setFormField(newField, fullName)
   }

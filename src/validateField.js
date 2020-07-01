@@ -7,12 +7,12 @@ const validatorFunctions = {
   match: ({ value }, regexp) => new RegExp(regexp).test(value)
 }
 
-const validateField = field => {
+const validateField = ({ field, fields }) => {
   const errors = []
   Object.keys(field.validators).forEach(validator => {
     if (
       !validatorFunctions[validator](
-        { value: field.value },
+        { value: field.value, fields },
         field.validators[validator]
       )
     ) {
