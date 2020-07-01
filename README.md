@@ -258,7 +258,7 @@ Create an object with your messages.
 
 ```
 const messages = {
-  range20to30 = 'You must be between 20 and 30 years of age to participate.'
+  range20to30: 'You must be between 20 and 30 years of age to participate.'
 }
 ```
 
